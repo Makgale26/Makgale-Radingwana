@@ -128,7 +128,30 @@ footer {
   text-align: center;
   padding: 2rem;
   background: #111;
+} 
+
+footer p a i{
+  margin: 10px;
 }
+
+  footer .icon-link {
+    margin-right: 20px; /* Adjust spacing between icons */
+    text-decoration: none;
+  }
+
+  footer .icon-link:last-child {
+    margin-right: 0; /* Remove margin from last icon */
+  }
+
+  footer i {
+    transition: transform 0.3s ease;
+  }
+
+  footer i:hover {
+    transform: scale(1.2); /* Optional hover effect */
+  }
+
+
 .light-mode {
   background: #f0f0f0;
   color: #0f0f0f;
