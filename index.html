@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Makgale Portfolio</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header>
+    <div class="container nav">
+      <h1 class="logo">Makgale</h1>
+      <nav>
+        <ul class="nav-links">
+          <li><a href="#home">Home</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#contact">Contact</a></li>
+          <li><a href="#Tech">Tech</a></li>
+          <li><button onclick="toggleTheme()">🌓</button></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <section id="home" class="hero">
+    <div class="container">
+      <h2>Hello, I'm <span class="highlight">Makgale</span></h2>
+      <p>I craft digital experiences with clean code and user-focused design.</p>
+    </div>
+    <a href="#" class="btn">Download CV</a>
+  </section>
+
+  <section class="stats">
+    <div class="container stats-grid">
+      <div><h3 id="exp">0</h3><p>Years Experience</p></div>
+      <div><h3 id="proj">0</h3><p>Projects Completed</p></div>
+      <div><h3 id="tech">0</h3><p>Technologies Mastered</p></div>
+      <div><h3 id="commits">0</h3><p>Code Commits</p></div>
+    </div>
+  </section>
+
+  <section id="projects" class="projects">
+    <div class="container">
+      <h2>My Projects</h2>
+      <div class="project-grid">
+        <div class="project-card">
+          <h3>Robotic Process Automation</h3>
+          <p>It performs repetive task by entering data on a site and verify data before. </p>
+        </div>
+        <div class="project-card">
+          <h3>API .NET FRAMEWORK</h3>
+          <p>There Interface interact Azure as Database host for Safely Manipulating Data </p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section id="Tech" class="Tech">
+    <div class="container">
+      <h2>Tech Im fimiliar with</h2>
+      <div class="Tech-grid">
+        <div class="Tech-card">
+          <h3>HTML</h3>
+        </div>
+        <div class="Tech-card">
+          <h3>CSS</h3>
+        </div>
+        <div class="Tech-card">
+          <h3>Javascript</h3>
+        </div>
+        <div class="Tech-card">
+          <h3>Python</h3>
+        </div>
+        <div class="Tech-card">
+          <h3>C# .NET FRAMEWORKS</h3>
+        </div>
+        <div class="Tech-card">
+          <h3>Power APPs</h3>
+        </div>
+        <div class="Tech-card">
+          <h3>Power Automation</h3>
+        </div>
+        <div class="Tech-card">
+          <h3>C/C++</h3>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="contact">
+    <div class="container">
+      <h2>Contact Me</h2>
+      <form>
+        <input type="text" placeholder="Your Name" required />
+        <input type="email" placeholder="Your Email" required />
+        <textarea placeholder="Your Message" required></textarea>
+        <button type="submit" class="btn">Send</button>
+      </form>
+    </div>
+  </section>
+
+  <footer>
+    <p>© 2025 Makgale. All rights reserved.</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
