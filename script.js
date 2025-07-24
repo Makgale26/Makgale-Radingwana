@@ -4,7 +4,7 @@ function toggleTheme() {
 
 function animateCount(id, end) {
   let start = 0;
-  const speed = 20;
+  const speed = 19;
   const step = Math.ceil(end / 100);
   const el = document.getElementById(id);
 
