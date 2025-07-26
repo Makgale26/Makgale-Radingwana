@@ -25,3 +25,4 @@ window.addEventListener('DOMContentLoaded', () => {
   animateCount('tech', 8);
   animateCount('commits', 500);
 });
+
