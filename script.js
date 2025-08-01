@@ -1,7 +1,9 @@
+// Theme toggle
 function toggleTheme() {
   document.body.classList.toggle('light-mode');
 }
 
+// Animate stats counting
 function animateCount(id, end) {
   let start = 0;
   const speed = 19;
@@ -19,10 +21,20 @@ function animateCount(id, end) {
   }, speed);
 }
 
-window.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', () => {
+  // Animate counts
   animateCount('exp', 1);
   animateCount('proj', 5);
   animateCount('tech', 8);
   animateCount('commits', 500);
-});
 
+  // Hamburger menu toggle
+  const navToggle = document.querySelector('.nav-toggle');
+  const navLinks = document.querySelector('.nav-links');
+
+  navToggle.addEventListener('click', () => {
+    const expanded = navToggle.getAttribute('aria-expanded') === 'true';
+    navToggle.setAttribute('aria-expanded', !expanded);
+    navLinks.classList.toggle('show');
+  });
+});
