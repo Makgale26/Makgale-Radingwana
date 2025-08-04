@@ -2,16 +2,17 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Makgale Portfolio</title>
 
   <!-- Bootstrap Library -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous" />
   
-  <!-- Bootstrap Icon -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+  <!-- Bootstrap Icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css" />
+  
+  <!-- Your CSS -->
   <link rel="stylesheet" href="styles.css" />
-
 </head>
 <body>
   <header>
@@ -20,8 +21,10 @@
         <i class="bi bi-person-circle me-2 text-success"></i>
         <span style="color: aqua;">Makgale</span>
       </h1>
-      
-      
+
+      <!-- Hamburger button -->
+      <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">&#9776;</button>
+
       <nav>
         <ul class="nav-links">
           <li><a href="#home">Home</a></li>
@@ -38,8 +41,8 @@
     <div class="container">
       <h2>Hello, I'm <span class="highlight">Makgale</span></h2>
       <p>I craft digital experiences with clean code and user-focused design.</p>
+      <a href="#" class="btn">Download CV</a>
     </div>
-    <a href="#" class="btn">Download CV</a>
   </section>
 
   <section class="stats">
@@ -57,54 +60,55 @@
       <div class="project-grid">
         <div class="project-card">
           <h3>Robotic Process Automation</h3>
-          <p>It performs repetive task by entering data on a site and verify data before. </p>
+          <p>It performs repetitive tasks by entering data on a site and verifying data before.</p>
         </div>
         <div class="project-card">
           <h3>API .NET FRAMEWORK</h3>
-          <p>There Interface interact Azure as Database host for Safely Manipulating Data </p>
+          <p>Interface interacts with Azure as Database host for safely manipulating data.</p>
         </div>
       </div>
     </div>
-    <section id="Tech" class="Tech">
-      <div class="container">
-        <h2 class="section-title">Tech I'm Familiar With</h2>
-        <div class="Tech-grid">
-          <div class="Tech-card">
-            <i class="bi bi-filetype-html fs-1 text-danger"></i>
-            <h3>HTML</h3>
-          </div>
-          <div class="Tech-card">
-            <i class="bi bi-filetype-css fs-1 text-primary"></i>
-            <h3>CSS</h3>
-          </div>
-          <div class="Tech-card">
-            <i class="bi bi-filetype-js fs-1 text-warning"></i>
-            <h3>JavaScript</h3>
-          </div>
-          <div class="Tech-card">
-            <i class="bi bi-terminal fs-1 text-success"></i>
-            <h3>Python</h3>
-          </div>
-          <div class="Tech-card">
-            <i class="bi bi-microsoft fs-1 text-dark"></i>
-            <h3>C# / .NET</h3>
-          </div>
-          <div class="Tech-card">
-            <i class="bi bi-app fs-1 text-info"></i>
-            <h3>Power Apps</h3>
-          </div>
-          <div class="Tech-card">
-            <i class="bi bi-gear fs-1 text-secondary"></i>
-            <h3>Power Automate</h3>
-          </div>
-          <div class="Tech-card">
-            <i class="bi bi-code-slash fs-1 text-muted"></i>
-            <h3>C/C++</h3>
-          </div>
+  </section>
+
+  <section id="Tech" class="Tech">
+    <div class="container">
+      <h2 class="section-title">Tech I'm Familiar With</h2>
+      <div class="Tech-grid">
+        <div class="Tech-card">
+          <i class="bi bi-filetype-html fs-1 text-danger"></i>
+          <h3>HTML</h3>
+        </div>
+        <div class="Tech-card">
+          <i class="bi bi-filetype-css fs-1 text-primary"></i>
+          <h3>CSS</h3>
+        </div>
+        <div class="Tech-card">
+          <i class="bi bi-filetype-js fs-1 text-warning"></i>
+          <h3>JavaScript</h3>
+        </div>
+        <div class="Tech-card">
+          <i class="bi bi-terminal fs-1 text-success"></i>
+          <h3>Python</h3>
+        </div>
+        <div class="Tech-card">
+          <i class="bi bi-microsoft fs-1 text-dark"></i>
+          <h3>C# / .NET</h3>
+        </div>
+        <div class="Tech-card">
+          <i class="bi bi-app fs-1 text-info"></i>
+          <h3>Power Apps</h3>
+        </div>
+        <div class="Tech-card">
+          <i class="bi bi-gear fs-1 text-secondary"></i>
+          <h3>Power Automate</h3>
+        </div>
+        <div class="Tech-card">
+          <i class="bi bi-code-slash fs-1 text-muted"></i>
+          <h3>C/C++</h3>
         </div>
       </div>
-    </section>
-    
+    </div>
+  </section>
 
   <section id="contact" class="contact">
     <div class="container">
@@ -120,30 +124,26 @@
 
   <footer class="text-center mt-4">
     <p>
-      <a href="mailto:kutullomakgale@gmail.com" class="me-3 text-danger">
+      <a href="mailto:kutullomakgale@gmail.com" class="me-3 text-danger" aria-label="Email">
         <i class="bi bi-envelope fs-3"></i>
       </a>
-      <a href="https://www.linkedin.com/in/kutullo-radingwana-4825b7319/" target="_blank" rel="noopener noreferrer" class="me-3 text-info">
+      <a href="https://www.linkedin.com/in/kutullo-radingwana-4825b7319/" target="_blank" rel="noopener noreferrer" class="me-3 text-info" aria-label="LinkedIn">
         <i class="bi bi-linkedin fs-3 text-primary"></i>
       </a>
-      <a href="https://github.com/Makgale26" target="_blank" rel="noopener noreferrer" class="text-secondary">
+      <a href="https://github.com/Makgale26" target="_blank" rel="noopener noreferrer" class="text-secondary" aria-label="GitHub">
         <i class="bi bi-github fs-3"></i>
       </a>
-
-      <!-- Green WhatsApp icon -->
-<a href="https://wa.me/27783466280" target="_blank" rel="noopener noreferrer" class="text-success">
-  <i class="bi bi-whatsapp fs-3"></i>
-</a>
-
-<!-- Blue Facebook icon -->
-<a href="https://www.facebook.com/Kutullo_M_Radingwana" target="_blank" rel="noopener noreferrer" class="text-primary">
-  <i class="bi bi-facebook fs-3"></i>
-</a>
+      <a href="https://wa.me/27783466280" target="_blank" rel="noopener noreferrer" class="text-success" aria-label="WhatsApp">
+        <i class="bi bi-whatsapp fs-3"></i>
+      </a>
+      <a href="https://www.facebook.com/Kutullo_M_Radingwana" target="_blank" rel="noopener noreferrer" class="text-primary" aria-label="Facebook">
+        <i class="bi bi-facebook fs-3"></i>
+      </a>
     </p>
     <p>© 2025 Makgale. All rights reserved.</p>
   </footer>
-  
 
+  <!-- Your JS -->
   <script src="script.js"></script>
 </body>
 </html>
