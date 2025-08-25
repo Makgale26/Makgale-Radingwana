@@ -38,3 +38,45 @@ document.addEventListener('DOMContentLoaded', () => {
     navLinks.classList.toggle('show');
   });
 });
+
+  const texts = [
+    "clean code and user-focused design.",
+    "responsive websites and interactive apps.",
+    "open-source projects and scalable solutions."
+  ];
+  const typingText = document.querySelector(".typing-text");
+  let index = 0;
+  let charIndex = 0;
+
+  function type() {
+    if (index < texts.length) {
+      if (charIndex <= texts[index].length) {
+        typingText.textContent = texts[index].substring(0, charIndex);
+        charIndex++;
+        setTimeout(type, 80); // Speed of typing (lower = faster)
+      } else {
+        // Pause before erasing
+        setTimeout(erase, 1500);
+      }
+    } else {
+      // Loop back to first phrase
+      index = 0;
+      setTimeout(type, 500);
+    }
+  }
+
+  function erase() {
+    if (charIndex >= 0) {
+      typingText.textContent = texts[index].substring(0, charIndex);
+      charIndex--;
+      setTimeout(erase, 30); // Speed of erasing
+    } else {
+      index++;
+      setTimeout(type, 500); // Delay before next phrase
+    }
+  }
+
+  // Start typing when page loads
+  document.addEventListener("DOMContentLoaded", type);
+
+
