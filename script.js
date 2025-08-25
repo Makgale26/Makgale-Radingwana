@@ -27,6 +27,26 @@ document.addEventListener('DOMContentLoaded', () => {
   animateCount('proj', 5);
   animateCount('tech', 8);
   animateCount('commits', 500);
+  function animateCount(id, end) {
+    let start = 0;
+    const speed = 19;
+    const step = Math.ceil(end / 100);
+    const el = document.getElementById(id);
+    const h3 = el.closest('h3');
+  
+    const timer = setInterval(() => {
+      start += step;
+      if (start >= end) {
+        el.textContent = end;
+        clearInterval(timer);
+        // Fade in the number
+        h3.style.opacity = 1;
+        h3.style.transform = 'translateY(0)';
+      } else {
+        el.textContent = start;
+      }
+    }, speed);
+  }
 
   // Hamburger menu toggle
   const navToggle = document.querySelector('.nav-toggle');
