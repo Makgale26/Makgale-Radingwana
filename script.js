@@ -39,11 +39,12 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 });
 
-  const texts = [
-    "clean code and user-focused design.",
-    "responsive websites and interactive apps.",
-    "open-source projects and scalable solutions."
-  ];
+const texts = [
+  "Develop full-stack applications with React, Node.js, and MongoDB.",
+  "Design responsive, user-friendly web interfaces and APIs.",
+  "Analyze data, automate workflows, and manage cloud deployments.",
+  "Perform cybersecurity analysis and implement security best practices."
+];
   const typingText = document.querySelector(".typing-text");
   let index = 0;
   let charIndex = 0;
