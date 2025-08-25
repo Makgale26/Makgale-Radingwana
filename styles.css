@@ -560,3 +560,25 @@ img {
   height: auto;
   display: block;
 }
+/* Staggered Card Animations */
+.contributions-section .card {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeInUp 0.6s ease-out forwards;
+}
+
+.contributions-section .card:nth-child(1) { animation-delay: 0.4s; }
+.contributions-section .card:nth-child(2) { animation-delay: 0.6s; }
+.contributions-section .card:nth-child(3) { animation-delay: 0.8s; }
+.contributions-section .card:nth-child(4) { animation-delay: 1.0s; }
+
+/* Optional: Re-animate on hover (subtle reset) */
+.contributions-section .card:hover {
+  animation: fadeInUp 0.6s ease-out forwards, floatHover 0.6s ease-out;
+}
+
+@keyframes floatHover {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-4px); }
+  100% { transform: translateY(-8px); }
+}
