@@ -123,6 +123,25 @@ const texts = [
     }
   })
 
+  // Mobile Menu Toggle
+  const navToggle = document.querySelector('.nav-toggle');
+  const navLinks = document.querySelector('.nav-links');
+
+  navToggle.addEventListener('click', () => {
+    navLinks.classList.toggle('show');
+    const isExpanded = navToggle.getAttribute('aria-expanded') === 'true';
+    navToggle.setAttribute('aria-expanded', !isExpanded);
+  });
+
+  // Close menu when clicking a link
+  document.querySelectorAll('.nav-links a').forEach(link => {
+    link.addEventListener('click', () => {
+      navLinks.classList.remove('show');
+      navToggle.setAttribute('aria-expanded', 'false');
+    });
+  });
+
+
   // Start typing when page loads
   document.addEventListener("DOMContentLoaded", type);
 

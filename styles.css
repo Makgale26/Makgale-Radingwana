@@ -121,6 +121,59 @@ header {
   right: 1.5rem;
   z-index: 1500;
 }
+/* === MOBILE-FIRST DEFAULT STYLES === */
+
+/* Nav Toggle Button */
+.nav-toggle {
+  display: none;
+  background: none;
+  border: none;
+  font-size: 2rem;
+  color: #00ffcc;
+  cursor: pointer;
+  position: absolute;
+  top: 1rem;
+  right: 1.5rem;
+  z-index: 1500;
+}
+
+/* Mobile Menu (Hidden by default) */
+.nav-links {
+  list-style: none;
+  flex-direction: column;
+  background: #111;
+  position: absolute;
+  top: 60px;
+  right: 0;
+  width: 80%;
+  max-width: 300px;
+  border-radius: 10px 0 0 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.nav-links.show {
+  opacity: 1;
+  visibility: visible;
+}
+
+.nav-links a,
+.nav-links button {
+  display: block;
+  padding: 1rem 1.5rem;
+  color: white;
+  text-decoration: none;
+  font-size: 1rem;
+  transition: background 0.3s;
+}
+
+.nav-links a:hover,
+.nav-links button:hover {
+  background: #222;
+}
 
 /* === HERO SECTION === */
 .hero {
