@@ -323,29 +323,141 @@ footer i:focus {
 }
 
 /* Section Title Animation */
-.section-title {
-  position: relative;
-  display: inline-block;
-  font-size: 2rem;
-  margin-bottom: 2rem;
-  opacity: 0;
-  transform: translateY(20px);
-  animation: fadeInUp 0.6s ease-out forwards;
-  animation-delay: 0.2s;
+/* === CONTRIBUTIONS SECTION === */
+.contributions-section {
+  padding: 60px 20px;
+  background: #111; /* Matches your dark theme */
+  color: #f0f0f0;
 }
 
-.section-title::after {
+.contributions-section .container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 20px;
+  text-align: center;
+}
+
+.contributions-section .section-title,
+.contributions-section .section-subtitle {
+  animation: fadeInUp 0.6s ease-out forwards;
+}
+
+.contributions-section .section-title {
+  font-size: 2rem;
+  margin-bottom: 10px;
+  color: #00ffcc; /* Neon green to match your theme */
+  position: relative;
+  display: inline-block;
+}
+
+.contributions-section .section-title::after {
   content: '';
   position: absolute;
   left: 0;
-  bottom: -10px;
-  height: 4px;
+  bottom: -8px;
   width: 100%;
+  height: 3px;
   background: #00ffcc;
   transform: scaleX(0);
   transform-origin: left;
   animation: underlineIn 0.6s ease-out forwards;
   animation-delay: 0.4s;
+}
+
+.contributions-section .section-subtitle {
+  font-size: 1rem;
+  margin-bottom: 40px;
+  color: #aaa;
+  opacity: 0;
+  animation-delay: 0.3s;
+}
+
+/* Gallery Grid */
+.contributions-section .gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 24px;
+  padding: 0;
+}
+
+/* Card Styles */
+.contributions-section .card {
+  background: #222;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  text-align: center;
+  color: #f0f0f0;
+}
+
+.contributions-section .card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 20px rgba(0, 0, 0, 0.4);
+}
+
+/* Image inside card */
+.contributions-section .card img {
+  width: 100%;
+  height: 140px;
+  object-fit: cover;
+  border-bottom: 1px solid #333;
+}
+
+/* Card Content */
+.contributions-section .card-content {
+  padding: 16px;
+}
+
+.contributions-section .card-content h3 {
+  margin: 0 0 8px;
+  font-size: 1.4rem;
+  color: #00ffcc;
+  font-weight: 600;
+}
+
+.contributions-section .card-content p {
+  margin: 0;
+  font-size: 1rem;
+  color: #ddd;
+  font-weight: 500;
+}
+
+/* === LIGHT MODE SUPPORT === */
+.light-mode .contributions-section {
+  background: #f0f0f0;
+  color: #0f0f0f;
+}
+
+.light-mode .contributions-section .card {
+  background: #fff;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  color: #0f0f0f;
+}
+
+.light-mode .contributions-section .card img {
+  border-bottom: 1px solid #ddd;
+}
+
+.light-mode .contributions-section .card:hover {
+  box-shadow: 0 12px 20px rgba(0, 0, 0, 0.15);
+}
+
+.light-mode .contributions-section .card-content h3 {
+  color: #00aa88;
+}
+
+.light-mode .contributions-section .card-content p {
+  color: #444;
+}
+
+.light-mode .contributions-section .section-title {
+  color: #00aa88;
+}
+
+.light-mode .contributions-section .section-subtitle,
+.light-mode .contributions-section .section-title::after {
+  color: #00aa88;
 }
 
 /* Animations */
