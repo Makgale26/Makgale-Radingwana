@@ -82,33 +82,40 @@ header {
 }
 
 /* Hero Section */
-.hero {
-  padding: 4rem 2rem;
-  background: #111;
+.hero-subtitle {
+  font-size: 1.3rem;
+  color: #aaa;
+  margin-bottom: 2rem;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+  line-height: 1.6;
+  overflow: hidden; /* Ensures no scrollbars */
 }
 
-.highlight {
+.typing-text {
   color: #00ffcc;
+  font-weight: 600;
+  border-right: 2px solid #00ffcc;
+  padding-right: 8px;
+  animation: blink 0.8s step-end infinite;
+  white-space: nowrap;
+  overflow: hidden;
+  width: 0;
+  animation: typing 3.5s steps(40) forwards,
+             blink 0.8s step-end infinite 3.5s;
 }
 
-.btn {
-  margin-top: 1.5rem;
-  padding: 0.75rem 1.5rem;
-  background: #00ffcc;
-  color: #000;
-  border: none;
-  border-radius: 5px;
-  text-decoration: none;
-  font-weight: bold;
-  cursor: pointer;
-  transition: background-color 0.3s, color 0.3s;
+/* Typing Animation */
+@keyframes typing {
+  from { width: 0 }
+  to { width: 100% }
 }
 
-.btn:hover,
-.btn:focus {
-  background-color: #00e6b8;
-  color: #000;
-  outline: none;
+/* Blinking Cursor */
+@keyframes blink {
+  0%, 100% { border-color: #00ffcc; }
+  50% { border-color: transparent; }
 }
 
 /* Stats Section */
