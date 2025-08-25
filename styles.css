@@ -164,6 +164,19 @@ header {
   background: #2a2a2a;
   outline: none;
 }
+.btn-outline {
+  background: transparent;
+  color: #00ffcc;
+  border: 2px solid #00ffcc;
+  text-decoration: none;
+  margin-top: 1rem;
+  transition: all 0.3s ease;
+}
+
+.btn-outline:hover {
+  background: #00ffcc;
+  color: #000;
+}
 
 /* Tech Section */
 .Tech {
