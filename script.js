@@ -96,6 +96,32 @@ const texts = [
       setTimeout(type, 500); // Delay before next phrase
     }
   }
+  const toggle = document.getElementById('theme-toggle');
+  const icon = toggle.querySelector('i');
+
+  // Check user's preference
+  const isDark = localStorage.getItem('dark-mode') === 'enabled' || 
+                 !window.matchMedia('(prefers-color-scheme: light)').matches;
+
+  if (isDark) {
+    document.body.classList.add('dark-mode'); // or however you apply dark mode
+    icon.classList.replace('bi-sun-fill', 'bi-moon-fill');
+  } else {
+    document.body.classList.remove('dark-mode');
+    icon.classList.replace('bi-moon-fill', 'bi-sun-fill');
+  }
+
+  toggle.addEventListener('click', () => {
+    document.body.classList.toggle('dark-mode');
+
+    if (document.body.classList.contains('dark-mode')) {
+      localStorage.setItem('dark-mode', 'enabled');
+      icon.classList.replace('bi-sun-fill', 'bi-moon-fill');
+    } else {
+      localStorage.setItem('dark-mode', 'disabled');
+      icon.classList.replace('bi-moon-fill', 'bi-sun-fill');
+    }
+  })
 
   // Start typing when page loads
   document.addEventListener("DOMContentLoaded", type);
