@@ -122,6 +122,8 @@ function initThemeToggle() {
 
 // Stats Animation
 function animateStats() {
+  console.log('animateStats called'); // Debug log
+  
   const statNumbers = {
     exp: 2,
     proj: 15,
@@ -131,23 +133,35 @@ function animateStats() {
 
   Object.keys(statNumbers).forEach((id, index) => {
     const element = document.getElementById(id);
+    console.log(`Element ${id}:`, element); // Debug log
+    
     if (element) {
       const target = statNumbers[id];
       let current = 0;
-      const duration = 2000; // 2 seconds
-      const increment = target / (duration / 50);
+      const duration = 2000;
+      const steps = 40;
+      const increment = target / steps;
+      const stepTime = duration / steps;
+      
+      // Reset to 0 first
+      element.textContent = '0';
       
       // Add delay for each stat
       setTimeout(() => {
+        let step = 0;
         const timer = setInterval(() => {
-          current += increment;
-          if (current >= target) {
-            current = target;
+          step++;
+          current = Math.min(step * increment, target);
+          element.textContent = Math.floor(current);
+          
+          if (step >= steps) {
+            element.textContent = target; // Ensure exact final value
             clearInterval(timer);
           }
-          element.textContent = Math.floor(current);
-        }, 50);
-      }, index * 200); // 200ms delay between each stat
+        }, stepTime);
+      }, index * 300); // 300ms delay between each stat
+    } else {
+      console.error(`Element with id '${id}' not found`);
     }
   });
 }
@@ -262,29 +276,44 @@ document.addEventListener('DOMContentLoaded', function() {
   initContactForm();
   
   // Animate stats when they come into view
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting && entry.target.classList.contains('stats')) {
-        // Add a small delay to ensure visibility
-        setTimeout(() => {
-          animateStats();
-        }, 100);
-        observer.unobserve(entry.target);
-      }
-    });
-  }, {
-    threshold: 0.5 // Trigger when 50% of the stats section is visible
-  });
-  
   const statsSection = document.querySelector('.stats');
+  console.log('Stats section found:', statsSection); // Debug log
+  
   if (statsSection) {
+    let animationTriggered = false;
+    
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting && !animationTriggered) {
+          console.log('Stats section intersecting, triggering animation');
+          animationTriggered = true;
+          setTimeout(() => {
+            animateStats();
+          }, 200);
+          observer.unobserve(entry.target);
+        }
+      });
+    }, {
+      threshold: 0.3 // Trigger when 30% of the stats section is visible
+    });
+    
     observer.observe(statsSection);
     
-    // Also trigger animation on page load as fallback
+    // Manual trigger after page load as fallback
     setTimeout(() => {
-      if (window.scrollY < 500) { // If near top of page
+      if (!animationTriggered) {
+        console.log('Fallback: triggering stats animation');
         animateStats();
+        animationTriggered = true;
       }
-    }, 1000);
+    }, 2000);
+    
+    // Also add a click handler for testing
+    statsSection.addEventListener('click', () => {
+      console.log('Stats section clicked, triggering animation');
+      animateStats();
+    });
+  } else {
+    console.error('Stats section not found');
   }
 });
