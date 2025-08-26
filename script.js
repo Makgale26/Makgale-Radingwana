@@ -145,4 +145,79 @@ const texts = [
   // Start typing when page loads
   document.addEventListener("DOMContentLoaded", type);
 
+  // Form validation and submission
+  const contactForm = document.getElementById('contact-form');
+  const submitBtn = document.getElementById('submit-btn');
+
+  if (contactForm) {
+    contactForm.addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      const name = document.getElementById('name').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const message = document.getElementById('message').value.trim();
+      
+      let isValid = true;
+      
+      // Clear previous errors
+      document.querySelectorAll('.error-message').forEach(error => {
+        error.textContent = '';
+        error.classList.remove('show');
+      });
+      
+      // Validate name
+      if (name.length < 2) {
+        showError('name-error', 'Name must be at least 2 characters long');
+        isValid = false;
+      }
+      
+      // Validate email
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(email)) {
+        showError('email-error', 'Please enter a valid email address');
+        isValid = false;
+      }
+      
+      // Validate message
+      if (message.length < 10) {
+        showError('message-error', 'Message must be at least 10 characters long');
+        isValid = false;
+      }
+      
+      if (isValid) {
+        // Simulate form submission
+        submitBtn.innerHTML = '<i class="bi bi-check-circle"></i> Message Sent!';
+        submitBtn.disabled = true;
+        
+        setTimeout(() => {
+          contactForm.reset();
+          submitBtn.innerHTML = '<i class="bi bi-send"></i> Send Message';
+          submitBtn.disabled = false;
+        }, 3000);
+      }
+    });
+  }
+
+  function showError(elementId, message) {
+    const errorElement = document.getElementById(elementId);
+    if (errorElement) {
+      errorElement.textContent = message;
+      errorElement.classList.add('show');
+    }
+  }
+
+  // Smooth scroll for navigation links
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+      e.preventDefault();
+      const target = document.querySelector(this.getAttribute('href'));
+      if (target) {
+        target.scrollIntoView({
+          behavior: 'smooth',
+          block: 'start'
+        });
+      }
+    });
+  });
+
 

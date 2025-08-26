@@ -2,3 +2,15 @@ modules = ["web", "nodejs-20"]
 
 [nix]
 channel = "stable-25_05"
+
+[workflows]
+runButton = "Start Portfolio"
+
+[[workflows.workflow]]
+name = "Start Portfolio"
+author = 35282166
+mode = "sequential"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "python -m http.server 5000"

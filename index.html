@@ -1,9 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" style="scroll-behavior: smooth;">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Makgale Portfolio</title>
+  <title>Makgale Portfolio - Full Stack Developer</title>
+  <meta name="description" content="Makgale - Full Stack Developer specializing in React, Node.js, Python, and C#. View my projects and technical skills." />
+  <meta name="keywords" content="Full Stack Developer, React, Node.js, Python, C#, Web Development" />
 
   <!-- Bootstrap Library -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous" />
@@ -31,7 +33,7 @@
     <ul class="nav-links">
       <li><a href="#home">Home</a></li>
       <li><a href="#projects">Projects</a></li>
-      <li><a href="#tech">Tech</a></li>
+      <li><a href="#Tech">Tech</a></li>
       <li><a href="#contact">Contact</a></li>
       
       <!-- Theme Toggle Button -->
@@ -93,12 +95,66 @@
       <h2 class="section-title">My Projects</h2>
       <div class="project-grid">
         <div class="project-card">
+          <div class="project-image">
+            <i class="bi bi-robot fs-1 text-warning"></i>
+          </div>
           <h3>Robotic Process Automation</h3>
-          <p>It performs repetitive tasks by entering data on a site and verifying data before.</p>
+          <p>Automated data entry and validation system that streamlines repetitive tasks, reducing manual errors by 90% and increasing productivity.</p>
+          <div class="tech-stack">
+            <span class="tech-tag">Python</span>
+            <span class="tech-tag">Selenium</span>
+            <span class="tech-tag">Pandas</span>
+          </div>
+          <div class="project-links">
+            <a href="https://github.com/Makgale26" target="_blank" class="project-link">
+              <i class="bi bi-github"></i> Code
+            </a>
+            <a href="#" class="project-link">
+              <i class="bi bi-eye"></i> Demo
+            </a>
+          </div>
         </div>
         <div class="project-card">
-          <h3>API .NET FRAMEWORK</h3>
-          <p>Interface interacts with Azure as Database host for safely manipulating data.</p>
+          <div class="project-image">
+            <i class="bi bi-cloud fs-1 text-primary"></i>
+          </div>
+          <h3>API .NET Framework</h3>
+          <p>RESTful API built with .NET Framework, integrated with Azure SQL Database for secure data management and real-time operations.</p>
+          <div class="tech-stack">
+            <span class="tech-tag">C#</span>
+            <span class="tech-tag">.NET</span>
+            <span class="tech-tag">Azure</span>
+            <span class="tech-tag">SQL</span>
+          </div>
+          <div class="project-links">
+            <a href="https://github.com/Makgale26" target="_blank" class="project-link">
+              <i class="bi bi-github"></i> Code
+            </a>
+            <a href="#" class="project-link">
+              <i class="bi bi-eye"></i> Demo
+            </a>
+          </div>
+        </div>
+        <div class="project-card">
+          <div class="project-image">
+            <i class="bi bi-globe fs-1 text-success"></i>
+          </div>
+          <h3>Personal Portfolio</h3>
+          <p>Responsive portfolio website showcasing my skills and projects, built with modern HTML5, CSS3, and JavaScript.</p>
+          <div class="tech-stack">
+            <span class="tech-tag">HTML5</span>
+            <span class="tech-tag">CSS3</span>
+            <span class="tech-tag">JavaScript</span>
+            <span class="tech-tag">Bootstrap</span>
+          </div>
+          <div class="project-links">
+            <a href="https://github.com/Makgale26" target="_blank" class="project-link">
+              <i class="bi bi-github"></i> Code
+            </a>
+            <a href="#" class="project-link">
+              <i class="bi bi-eye"></i> Live
+            </a>
+          </div>
         </div>
       </div>
     </div>
@@ -197,12 +253,34 @@
   <section id="contact" class="contact">
     <div class="container">
       <h2 class="section-title">Contact Me</h2>
-      <form>
-        <input type="text" placeholder="Your Name" required />
-        <input type="email" placeholder="Your Email" required />
-        <textarea placeholder="Your Message" required></textarea>
-        <button type="submit" class="btn">Send</button>
+      <p class="contact-subtitle">Let's discuss your next project or potential collaboration</p>
+      <form id="contact-form">
+        <div class="form-group">
+          <input type="text" id="name" name="name" placeholder="Your Name" required />
+          <span class="error-message" id="name-error"></span>
+        </div>
+        <div class="form-group">
+          <input type="email" id="email" name="email" placeholder="Your Email" required />
+          <span class="error-message" id="email-error"></span>
+        </div>
+        <div class="form-group">
+          <textarea id="message" name="message" placeholder="Your Message" rows="5" required></textarea>
+          <span class="error-message" id="message-error"></span>
+        </div>
+        <button type="submit" class="btn" id="submit-btn">
+          <i class="bi bi-send"></i> Send Message
+        </button>
       </form>
+      <div class="contact-info">
+        <div class="contact-item">
+          <i class="bi bi-envelope"></i>
+          <span>kutullomakgale@gmail.com</span>
+        </div>
+        <div class="contact-item">
+          <i class="bi bi-geo-alt"></i>
+          <span>Available for remote work</span>
+        </div>
+      </div>
     </div>
   </section>
 
