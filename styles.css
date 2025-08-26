@@ -22,7 +22,7 @@ header {
 .section-title {
   font-size: 2rem;
   color: #00ffcc;
-  margin-bottom: 10px;
+  margin-bottom: 3rem;
   position: relative;
   display: inline-block;
   opacity: 0;
@@ -358,7 +358,7 @@ header {
 .stats .section-title {
   font-size: 2rem;
   color: #00ffcc;
-  margin-bottom: 2rem;
+  margin-bottom: 3rem;
 }
 
 .stats-grid {
@@ -691,7 +691,7 @@ header {
 .contributions-section .section-title {
   font-size: 2rem;
   color: #00ffcc;
-  margin-bottom: 10px;
+  margin-bottom: 3rem;
   position: relative;
   display: inline-block;
 }
