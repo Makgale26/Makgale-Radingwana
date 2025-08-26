@@ -28,6 +28,8 @@ header {
   opacity: 0;
   transform: translateY(20px);
   animation: fadeInUp 0.6s ease-out forwards;
+  text-align: center;
+  width: 100%;
 }
 
 .section-title::after {
@@ -346,6 +348,13 @@ header {
   text-align: center;
 }
 
+/* Center all section containers */
+.projects .container,
+.Tech .container,
+.contributions-section .container {
+  text-align: center;
+}
+
 .stats .section-title {
   font-size: 2rem;
   color: #00ffcc;
@@ -628,6 +637,9 @@ header {
   border: none;
   font-weight: 600;
   transition: all 0.3s ease;
+  margin: 0 auto;
+  display: block;
+  max-width: 300px;
 }
 
 .contact .btn:hover {
@@ -739,29 +751,251 @@ header {
 
 /* === LIGHT MODE === */
 .light-mode {
-  background: #f0f0f0;
-  color: #0f0f0f;
+  background: #f8f9fa;
+  color: #2c3e50;
 }
 
-.light-mode header,
+.light-mode header {
+  background: #ffffff;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
 .light-mode footer {
-  background: #e0e0e0;
+  background: #ffffff;
+  color: #2c3e50;
 }
 
-.light-mode .project-card,
-.light-mode .Tech-card,
+/* Navigation Light Mode */
+.light-mode .nav-links {
+  background: rgba(255, 255, 255, 0.95);
+  border: 1px solid rgba(52, 152, 219, 0.2);
+}
+
+.light-mode .nav-tab {
+  color: #2c3e50;
+}
+
+.light-mode .nav-tab:hover {
+  color: #3498db;
+  background: rgba(52, 152, 219, 0.1);
+}
+
+.light-mode .nav-tab.active {
+  color: #ffffff;
+  background: #3498db;
+  box-shadow: 0 4px 15px rgba(52, 152, 219, 0.3);
+}
+
+.light-mode .nav-links button {
+  color: #3498db;
+}
+
+.light-mode .nav-links button:hover {
+  background: rgba(52, 152, 219, 0.1);
+}
+
+/* Hero Section Light Mode */
+.light-mode .hero {
+  background: #f8f9fa;
+}
+
+.light-mode .hero-content h2 {
+  color: #2c3e50;
+}
+
+.light-mode .highlight {
+  color: #3498db;
+  text-shadow: 0 0 8px rgba(52, 152, 219, 0.3);
+}
+
+.light-mode .hero-subtitle {
+  color: #7f8c8d;
+}
+
+.light-mode .typing-text {
+  color: #3498db;
+  border-right-color: #3498db;
+}
+
+.light-mode .btn {
+  background-color: #3498db;
+  color: #ffffff;
+}
+
+.light-mode .btn:hover {
+  background-color: #2980b9;
+  box-shadow: 0 4px 12px rgba(52, 152, 219, 0.4);
+}
+
+/* Stats Section Light Mode */
+.light-mode .stats {
+  background: #ecf0f1;
+}
+
+.light-mode .stats .section-title {
+  color: #3498db;
+}
+
+.light-mode .stat-item {
+  background: #ffffff;
+  color: #2c3e50;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.light-mode .stat-item h3 {
+  color: #3498db;
+}
+
+.light-mode .stat-item p {
+  color: #7f8c8d;
+}
+
+/* Projects Section Light Mode */
+.light-mode .projects {
+  background: #f8f9fa;
+}
+
+.light-mode .project-card {
+  background: #ffffff;
+  color: #2c3e50;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  border: 1px solid #e9ecef;
+}
+
+.light-mode .project-card::before {
+  background: linear-gradient(90deg, #3498db, #2980b9);
+}
+
+.light-mode .project-card:hover {
+  box-shadow: 0 15px 30px rgba(52, 152, 219, 0.2);
+  border-color: #3498db;
+}
+
+.light-mode .project-card h3 {
+  color: #3498db;
+}
+
+.light-mode .project-card p {
+  color: #5a6c7d;
+}
+
+.light-mode .tech-tag {
+  background: #3498db;
+  color: #ffffff;
+}
+
+.light-mode .project-link {
+  color: #3498db;
+}
+
+.light-mode .project-link:hover {
+  color: #2c3e50;
+}
+
+/* Tech Section Light Mode */
+.light-mode .Tech {
+  background: #ecf0f1;
+}
+
+.light-mode .Tech-card {
+  background: #ffffff;
+  color: #2c3e50;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.light-mode .Tech-card:hover {
+  background: #f8f9fa;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+/* Contact Section Light Mode */
+.light-mode .contact {
+  background: #f8f9fa;
+  color: #2c3e50;
+}
+
+.light-mode .contact-subtitle {
+  color: #7f8c8d;
+}
+
+.light-mode .contact input,
+.light-mode .contact textarea {
+  background-color: #ffffff;
+  color: #2c3e50;
+  border: 2px solid #e9ecef;
+}
+
+.light-mode .contact input:focus,
+.light-mode .contact textarea:focus {
+  border-color: #3498db;
+  box-shadow: 0 0 15px rgba(52, 152, 219, 0.3);
+}
+
+.light-mode .contact .btn {
+  background-color: #3498db;
+  color: #ffffff;
+}
+
+.light-mode .contact .btn:hover {
+  background-color: #2980b9;
+  box-shadow: 0 8px 20px rgba(52, 152, 219, 0.4);
+}
+
+.light-mode .contact-item {
+  color: #7f8c8d;
+}
+
+.light-mode .contact-item i {
+  color: #3498db;
+}
+
+/* Contributions Section Light Mode */
+.light-mode .contributions-section {
+  background: #ecf0f1;
+}
+
+.light-mode .contributions-section .section-title {
+  color: #3498db;
+}
+
+.light-mode .contributions-section .section-title::after {
+  background: #3498db;
+}
+
 .light-mode .contributions-section .card {
-  background: #fff;
-  color: #0f0f0f;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  background: #ffffff;
+  color: #2c3e50;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
 }
 
 .light-mode .contributions-section .card-content h3 {
-  color: #00aa88;
+  color: #3498db;
 }
 
 .light-mode .contributions-section .card-content p {
-  color: #444;
+  color: #7f8c8d;
+}
+
+/* Section Titles Light Mode */
+.light-mode .section-title {
+  color: #3498db;
+}
+
+.light-mode .section-title::after {
+  background: #3498db;
+}
+
+/* Mobile Navigation Light Mode */
+@media (max-width: 768px) {
+  .light-mode .nav-links {
+    background: rgba(255, 255, 255, 0.98);
+    border: 1px solid rgba(52, 152, 219, 0.2);
+  }
+  
+  .light-mode .nav-tab.active {
+    background: #3498db;
+    color: #ffffff;
+  }
 }
 
 /* === ANIMATIONS === */
