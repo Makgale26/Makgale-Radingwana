@@ -92,7 +92,7 @@ function initNavigation() {
 }
 
 // Theme Toggle Functions
-function toggleTheme() {
+window.toggleTheme = function() {
   const body = document.body;
   const themeIcon = document.querySelector('#theme-toggle i');
   
