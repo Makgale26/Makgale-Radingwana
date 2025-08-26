@@ -439,6 +439,140 @@ header {
   transition: all 0.3s ease;
 }
 
+/* === SERVICES SECTION === */
+.services {
+  padding: 4rem 2rem;
+  background: #1a1a1a;
+}
+
+.services .container {
+  max-width: 1200px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.service-card {
+  background: #222;
+  padding: 2.5rem 2rem;
+  border-radius: 15px;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+  border: 1px solid #333;
+  position: relative;
+  overflow: hidden;
+  text-align: center;
+}
+
+.service-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #00ffcc, #00e6b8);
+  transform: scaleX(0);
+  transition: transform 0.3s ease;
+}
+
+.service-card:hover::before {
+  transform: scaleX(1);
+}
+
+.service-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 15px 30px rgba(0, 255, 204, 0.2);
+  border-color: #00ffcc;
+}
+
+.service-icon {
+  margin-bottom: 1.5rem;
+}
+
+.service-card h3 {
+  color: #00ffcc;
+  margin-bottom: 1rem;
+  font-size: 1.4rem;
+}
+
+.service-card p {
+  color: #ccc;
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+}
+
+.service-features {
+  list-style: none;
+  padding: 0;
+  text-align: left;
+}
+
+.service-features li {
+  color: #aaa;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid #333;
+  position: relative;
+  padding-left: 1.5rem;
+}
+
+.service-features li:last-child {
+  border-bottom: none;
+}
+
+.service-features li::before {
+  content: '✓';
+  color: #00ffcc;
+  font-weight: bold;
+  position: absolute;
+  left: 0;
+  top: 0.5rem;
+}
+
+/* Light Mode Services */
+.light-mode .services {
+  background: #ecf0f1;
+}
+
+.light-mode .service-card {
+  background: #ffffff;
+  color: #2c3e50;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  border: 1px solid #e9ecef;
+}
+
+.light-mode .service-card::before {
+  background: linear-gradient(90deg, #3498db, #2980b9);
+}
+
+.light-mode .service-card:hover {
+  box-shadow: 0 15px 30px rgba(52, 152, 219, 0.2);
+  border-color: #3498db;
+}
+
+.light-mode .service-card h3 {
+  color: #3498db;
+}
+
+.light-mode .service-card p {
+  color: #5a6c7d;
+}
+
+.light-mode .service-features li {
+  color: #7f8c8d;
+  border-bottom-color: #e9ecef;
+}
+
+.light-mode .service-features li::before {
+  color: #3498db;
+}
+
 /* === PROJECTS SECTION === */
 .projects {
   padding: 4rem 2rem;
