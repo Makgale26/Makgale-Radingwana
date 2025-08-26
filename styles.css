@@ -337,7 +337,7 @@ header {
 
 /* === STATS SECTION === */
 .stats {
-  background: #1a1a1a;
+  background: #2a2a2a;
   padding: 4rem 2rem;
   color: #f0f0f0;
 }
@@ -442,7 +442,7 @@ header {
 /* === SERVICES SECTION === */
 .services {
   padding: 4rem 2rem;
-  background: #1a1a1a;
+  background: #0f0f0f;
 }
 
 .services .container {
@@ -576,7 +576,7 @@ header {
 /* === GRAPHICS SECTION === */
 .graphics {
   padding: 4rem 2rem;
-  background: #0f0f0f;
+  background: #2a2a2a;
 }
 
 .graphics .container {
@@ -815,7 +815,7 @@ header {
 /* === PROJECTS SECTION === */
 .projects {
   padding: 4rem 2rem;
-  background: #0a0a0a;
+  background: #0f0f0f;
 }
 
 .project-grid {
@@ -910,6 +910,7 @@ header {
 /* === TECH SECTION === */
 .Tech {
   padding: 3rem 2rem;
+  background: #2a2a2a;
 }
 
 .Tech-grid {
@@ -936,7 +937,7 @@ header {
 
 /* === CONTACT SECTION === */
 .contact {
-  background-color: #0a0a0a;
+  background-color: #2a2a2a;
   padding: 60px 20px;
   color: #ffffff;
 }
@@ -1051,7 +1052,7 @@ header {
 /* === CONTRIBUTIONS SECTION === */
 .contributions-section {
   padding: 60px 20px;
-  background: #111;
+  background: #0f0f0f;
   color: #f0f0f0;
 }
 
