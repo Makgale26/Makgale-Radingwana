@@ -206,10 +206,44 @@ const texts = [
     }
   }
 
+  // Active tab functionality and smooth scroll
+  const navTabs = document.querySelectorAll('.nav-tab');
+  const sections = document.querySelectorAll('section[id]');
+
+  // Update active tab based on scroll position
+  function updateActiveTab() {
+    let currentSection = '';
+    
+    sections.forEach(section => {
+      const sectionTop = section.offsetTop - 100;
+      const sectionHeight = section.offsetHeight;
+      
+      if (window.scrollY >= sectionTop && window.scrollY < sectionTop + sectionHeight) {
+        currentSection = section.getAttribute('id');
+      }
+    });
+
+    navTabs.forEach(tab => {
+      tab.classList.remove('active');
+      if (tab.getAttribute('href') === `#${currentSection}`) {
+        tab.classList.add('active');
+      }
+    });
+  }
+
   // Smooth scroll for navigation links
   document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
       e.preventDefault();
+      
+      // Remove active class from all tabs
+      navTabs.forEach(tab => tab.classList.remove('active'));
+      
+      // Add active class to clicked tab
+      if (this.classList.contains('nav-tab')) {
+        this.classList.add('active');
+      }
+      
       const target = document.querySelector(this.getAttribute('href'));
       if (target) {
         target.scrollIntoView({
@@ -217,7 +251,17 @@ const texts = [
           block: 'start'
         });
       }
+      
+      // Close mobile menu if open
+      navLinks.classList.remove('show');
+      navToggle.setAttribute('aria-expanded', 'false');
     });
   });
+
+  // Update active tab on scroll
+  window.addEventListener('scroll', updateActiveTab);
+  
+  // Set initial active tab
+  updateActiveTab();
 
 
