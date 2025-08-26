@@ -1,422 +1,512 @@
+<!DOCTYPE html>
+<html lang="en" style="scroll-behavior: smooth;">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Makgale Portfolio - Full Stack Developer</title>
+  <meta name="description" content="Makgale - Full Stack Developer specializing in React, Node.js, Python, and C#. View my projects and technical skills." />
+  <meta name="keywords" content="Full Stack Developer, React, Node.js, Python, C#, Web Development" />
 
-// Typing Animation
-function initTypingAnimation() {
-  const typingText = document.querySelector('.typing-text');
-  const texts = [
-    'Full Stack Development',
-    'Process Automation', 
-    'Cybersecurity Analysis',
-    'Data Analysis',
-    'Graphic Design'
-  ];
-  
-  let textIndex = 0;
-  let charIndex = 0;
-  let isDeleting = false;
-  
-  function typeWriter() {
-    const currentText = texts[textIndex];
-    
-    if (isDeleting) {
-      typingText.textContent = currentText.substring(0, charIndex - 1);
-      charIndex--;
-    } else {
-      typingText.textContent = currentText.substring(0, charIndex + 1);
-      charIndex++;
-    }
-    
-    if (!isDeleting && charIndex === currentText.length) {
-      setTimeout(() => { isDeleting = true; }, 2000);
-    } else if (isDeleting && charIndex === 0) {
-      isDeleting = false;
-      textIndex = (textIndex + 1) % texts.length;
-    }
-    
-    const typingSpeed = isDeleting ? 100 : 150;
-    setTimeout(typeWriter, typingSpeed);
-  }
-  
-  if (typingText) {
-    setTimeout(typeWriter, 1000);
-  }
-}
+  <!-- Bootstrap Library -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous" />
 
-// Navigation Functions
-function initNavigation() {
-  const navToggle = document.querySelector('.nav-toggle');
-  const navLinks = document.querySelector('.nav-links');
-  const navTabs = document.querySelectorAll('.nav-tab');
-  const sections = document.querySelectorAll('section[id]');
+  <!-- Bootstrap Icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css" />
 
-  // Mobile menu toggle
-  if (navToggle && navLinks) {
-    navToggle.addEventListener('click', () => {
-      navLinks.classList.toggle('show');
-      const isExpanded = navToggle.getAttribute('aria-expanded') === 'true';
-      navToggle.setAttribute('aria-expanded', !isExpanded);
-    });
-  }
+  <!-- Your CSS -->
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header>
+    <div class="container nav">
+      <h1>
+        <i class="bi bi-person-circle me-2 text-success"></i>
+        <span style="color: aqua;">Makgale</span>
+      </h1>
 
-  // Close menu when clicking a link
-  document.querySelectorAll('.nav-links a').forEach(link => {
-    link.addEventListener('click', () => {
-      if (navLinks) navLinks.classList.remove('show');
-      if (navToggle) navToggle.setAttribute('aria-expanded', 'false');
-    });
-  });
 
-  // Update active tab based on scroll position
-  function updateActiveTab() {
-    let currentSection = '';
 
-    sections.forEach(section => {
-      const sectionTop = section.offsetTop - 100;
-      const sectionHeight = section.offsetHeight;
+      <!-- Navigation Links -->
+    <nav class="nav-tabs">
+      <ul class="nav-links">
+        <li><a href="#home" class="nav-tab active">Home</a></li>
+        <li><a href="#services" class="nav-tab">Services</a></li>
+        <li><a href="#graphics" class="nav-tab">Graphics</a></li>
+        <li><a href="#projects" class="nav-tab">Projects</a></li>
+        <li><a href="#Tech" class="nav-tab">Tech</a></li>
+        <li><a href="#contact" class="nav-tab">Contact</a></li>
 
-      if (window.scrollY >= sectionTop && window.scrollY < sectionTop + sectionHeight) {
-        currentSection = section.getAttribute('id');
-      }
-    });
+        <!-- Theme Toggle Button -->
+        <li>
+          <button onclick="toggleTheme()" id="theme-toggle" aria-label="Toggle theme" title="Toggle theme">
+            <i class="bi bi-sun-fill"></i>
+          </button>
+        </li>
+      </ul>
+    </nav>
+      </nav>
+      <!-- Hamburger button -->
+      <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+        <i class="bi bi-list"></i>
+      </button>
+    </div>
+  </header>
+  <section id="home" class="hero">
+    <div class="container">
+      <div class="hero-content">
+        <h2>Hello, I'm <span class="highlight">Makgale</span></h2>
+        <p class="hero-subtitle">
+          My expertise includes
+          <span class="typing-text"></span>
+        </p>
+        <a href="assets/Makgale_CV.pdf" class="btn" download>Download CV</a>
+      </div>
 
-    navTabs.forEach(tab => {
-      tab.classList.remove('active');
-      if (tab.getAttribute('href') === `#${currentSection}`) {
-        tab.classList.add('active');
-      }
-    });
-  }
+      <div class="hero-media">
+        <video autoplay loop muted playsinline class="wolf-video">
+          <source src="asset/video.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+      </div>
+    </div>
+  </section>
 
-  // Listen for scroll events
-  window.addEventListener('scroll', updateActiveTab);
-  updateActiveTab(); // Initial call
-}
+  <section class="stats">
+  <div class="container">
+    <h2 class="section-title">My Stats</h2>
+    <div class="stats-grid">
+      <div class="stat-item">
+        <h3><span id="exp">2</span></h3>
+        <p>Year Experience</p>
+      </div>
+      <div class="stat-item">
+        <h3><span id="proj">15</span></h3>
+        <p>Projects Completed</p>
+      </div>
+      <div class="stat-item">
+        <h3><span id="tech">12</span></h3>
+        <p>Technologies Mastered</p>
+      </div>
+      <div class="stat-item">
+        <h3><span id="commits">500</span></h3>
+        <p>Code Commits</p>
+      </div>
+    </div>
+  </div>
+</section>
 
-// Theme Toggle Functions
-window.toggleTheme = function() {
-  const body = document.body;
-  const themeIcon = document.querySelector('#theme-toggle i');
-  
-  body.classList.toggle('light-mode');
-  
-  if (body.classList.contains('light-mode')) {
-    themeIcon.classList.replace('bi-sun-fill', 'bi-moon-fill');
-    localStorage.setItem('theme', 'light');
-  } else {
-    themeIcon.classList.replace('bi-moon-fill', 'bi-sun-fill');
-    localStorage.setItem('theme', 'dark');
-  }
-}
+  <section id="services" class="services">
+    <div class="container">
+      <h2 class="section-title">My Services</h2>
+      <div class="services-grid">
+        <div class="service-card">
+          <div class="service-icon">
+            <i class="bi bi-code-slash fs-1 text-primary"></i>
+          </div>
+          <h3>Full-Stack Development</h3>
+          <p>Complete web application development using modern technologies like React, Node.js, and databases. From concept to deployment.</p>
+          <ul class="service-features">
+            <li>Frontend Development (React, HTML5, CSS3)</li>
+            <li>Backend APIs (Node.js, .NET, Python)</li>
+            <li>Database Design & Integration</li>
+            <li>Cloud Deployment & Hosting</li>
+          </ul>
+        </div>
 
-function initThemeToggle() {
-  const toggle = document.getElementById('theme-toggle');
-  const icon = toggle.querySelector('i');
+        <div class="service-card">
+          <div class="service-icon">
+            <i class="bi bi-robot fs-1 text-warning"></i>
+          </div>
+          <h3>Process Automation</h3>
+          <p>Streamline your business processes with custom automation solutions that reduce manual work and increase efficiency.</p>
+          <ul class="service-features">
+            <li>Robotic Process Automation (RPA)</li>
+            <li>Data Entry & Validation Systems</li>
+            <li>Workflow Optimization</li>
+            <li>Microsoft Power Platform Solutions</li>
+          </ul>
+        </div>
 
-  // Check saved theme or default to dark
-  const savedTheme = localStorage.getItem('theme') || 'dark';
-  
-  if (savedTheme === 'light') {
-    document.body.classList.add('light-mode');
-    icon.classList.replace('bi-sun-fill', 'bi-moon-fill');
-  }
-}
+        <div class="service-card">
+          <div class="service-icon">
+            <i class="bi bi-shield-check fs-1 text-success"></i>
+          </div>
+          <h3>Cybersecurity Analysis</h3>
+          <p>Protect your digital assets with comprehensive security analysis and implementation of best practices.</p>
+          <ul class="service-features">
+            <li>Security Assessment & Auditing</li>
+            <li>Vulnerability Analysis</li>
+            <li>Secure Code Review</li>
+            <li>Security Best Practices Implementation</li>
+          </ul>
+        </div>
 
-// Stats Animation
-function animateStats() {
-  const statNumbers = {
-    exp: 2,
-    proj: 15,
-    tech: 12,
-    commits: 500
-  };
+        <div class="service-card">
+          <div class="service-icon">
+            <i class="bi bi-graph-up fs-1 text-info"></i>
+          </div>
+          <h3>Data Analysis</h3>
+          <p>Transform your data into actionable insights with advanced analytics and visualization solutions.</p>
+          <ul class="service-features">
+            <li>Data Processing & Cleaning</li>
+            <li>Statistical Analysis</li>
+            <li>Data Visualization</li>
+            <li>Reporting & Dashboard Creation</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
 
-  Object.keys(statNumbers).forEach((id, index) => {
-    const element = document.getElementById(id);
-    
-    if (element) {
-      const target = statNumbers[id];
-      let current = 0;
-      const duration = 2000;
-      const totalSteps = 60;
-      const stepTime = duration / totalSteps;
-      
-      // Reset to 0 first
-      element.textContent = '0';
-      
-      // Add delay for each stat
-      setTimeout(() => {
-        const timer = setInterval(() => {
-          if (target <= 20) {
-            // For small numbers, increment by 1
-            current += 1;
-          } else if (target <= 100) {
-            // For medium numbers, increment by 2-3
-            current += Math.ceil(target / 30);
-          } else {
-            // For large numbers, increment more
-            current += Math.ceil(target / 40);
-          }
-          
-          if (current >= target) {
-            current = target;
-            element.textContent = target;
-            clearInterval(timer);
-          } else {
-            element.textContent = Math.floor(current);
-          }
-        }, stepTime);
-      }, index * 400); // 400ms delay between each stat
-    }
-  });
-}
+  <section id="graphics" class="graphics">
+    <div class="container">
+      <h2 class="section-title">Graphic Design Portfolio</h2>
+      <p class="section-subtitle">Creative visual solutions that communicate your brand's story</p>
 
-// Graphics Filter Functions
-function initGraphicsFilter() {
-  const categoryTabs = document.querySelectorAll('.category-tab');
-  const designCards = document.querySelectorAll('.design-card');
+      <div class="design-categories">
+        <div class="category-tabs">
+          <button class="category-tab active" data-category="all">All Designs</button>
+          <button class="category-tab" data-category="logos">Logos</button>
+          <button class="category-tab" data-category="branding">Branding</button>
+          <button class="category-tab" data-category="web">Web Design</button>
+          <button class="category-tab" data-category="print">Print Design</button>
+        </div>
 
-  categoryTabs.forEach(tab => {
-    tab.addEventListener('click', () => {
-      // Remove active class from all tabs
-      categoryTabs.forEach(t => t.classList.remove('active'));
-      // Add active class to clicked tab
-      tab.classList.add('active');
+        <div class="graphics-grid">
+          <div class="design-card" data-category="logos">
+            <div class="design-image">
+              <i class="bi bi-palette2 fs-1 text-warning"></i>
+            </div>
+            <div class="design-overlay">
+              <h3>Logo Design</h3>
+              <p>Modern, memorable logos that represent your brand identity</p>
+              <div class="design-tools">
+                <span class="tool-tag">Illustrator</span>
+                <span class="tool-tag">Photoshop</span>
+              </div>
+            </div>
+          </div>
 
-      const category = tab.dataset.category;
+          <div class="design-card" data-category="branding">
+            <div class="design-image">
+              <i class="bi bi-brush fs-1 text-primary"></i>
+            </div>
+            <div class="design-overlay">
+              <h3>Brand Identity</h3>
+              <p>Complete brand packages including color schemes, typography, and guidelines</p>
+              <div class="design-tools">
+                <span class="tool-tag">Illustrator</span>
+                <span class="tool-tag">InDesign</span>
+              </div>
+            </div>
+          </div>
 
-      // Filter cards
-      designCards.forEach(card => {
-        if (category === 'all' || card.dataset.category === category) {
-          card.style.display = 'block';
-        } else {
-          card.style.display = 'none';
-        }
-      });
-    });
-  });
-}
+          <div class="design-card" data-category="web">
+            <div class="design-image">
+              <i class="bi bi-laptop fs-1 text-info"></i>
+            </div>
+            <div class="design-overlay">
+              <h3>UI/UX Design</h3>
+              <p>User-centered web and mobile interface designs with modern aesthetics</p>
+              <div class="design-tools">
+                <span class="tool-tag">Figma</span>
+                <span class="tool-tag">Adobe XD</span>
+              </div>
+            </div>
+          </div>
 
-// Contact Form Functions
-function initContactForm() {
-  const form = document.getElementById('contact-form');
-  const submitBtn = document.getElementById('submit-btn');
+          <div class="design-card" data-category="print">
+            <div class="design-image">
+              <i class="bi bi-file-earmark-text fs-1 text-success"></i>
+            </div>
+            <div class="design-overlay">
+              <h3>Print Design</h3>
+              <p>Business cards, flyers, brochures, and marketing materials</p>
+              <div class="design-tools">
+                <span class="tool-tag">InDesign</span>
+                <span class="tool-tag">Photoshop</span>
+              </div>
+            </div>
+          </div>
 
-  if (!form) return;
+          <div class="design-card" data-category="logos">
+            <div class="design-image">
+              <i class="bi bi-award fs-1 text-danger"></i>
+            </div>
+            <div class="design-overlay">
+              <h3>Award Graphics</h3>
+              <p>Certificates, badges, and recognition graphics for achievements</p>
+              <div class="design-tools">
+                <span class="tool-tag">Illustrator</span>
+                <span class="tool-tag">Canva Pro</span>
+              </div>
+            </div>
+          </div>
 
-  // Real-time validation on input
-  const nameInput = document.getElementById('name');
-  const emailInput = document.getElementById('email');
-  const messageInput = document.getElementById('message');
+          <div class="design-card" data-category="branding">
+            <div class="design-image">
+              <i class="bi bi-images fs-1 text-purple"></i>
+            </div>
+            <div class="design-overlay">
+              <h3>Social Media Graphics</h3>
+              <p>Eye-catching posts, stories, and promotional graphics for social platforms</p>
+              <div class="design-tools">
+                <span class="tool-tag">Photoshop</span>
+                <span class="tool-tag">Canva Pro</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
 
-  // Add real-time validation listeners
-  nameInput.addEventListener('blur', () => validateField('name'));
-  emailInput.addEventListener('blur', () => validateField('email'));
-  messageInput.addEventListener('blur', () => validateField('message'));
+      <div class="design-services">
+        <h3>Design Services I Offer</h3>
+        <div class="services-list">
+          <div class="service-item">
+            <i class="bi bi-check-circle text-success"></i>
+            <span>Logo Design & Brand Identity</span>
+          </div>
+          <div class="service-item">
+            <i class="bi bi-check-circle text-success"></i>
+            <span>Web & Mobile UI/UX Design</span>
+          </div>
+          <div class="service-item">
+            <i class="bi bi-check-circle text-success"></i>
+            <span>Print Design & Marketing Materials</span>
+          </div>
+          <div class="service-item">
+            <i class="bi bi-check-circle text-success"></i>
+            <span>Social Media Graphics & Content</span>
+          </div>
+          <div class="service-item">
+            <i class="bi bi-check-circle text-success"></i>
+            <span>Packaging & Product Design</span>
+          </div>
+          <div class="service-item">
+            <i class="bi bi-check-circle text-success"></i>
+            <span>Illustration & Icon Design</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-  // Clear errors on input
-  nameInput.addEventListener('input', () => clearFieldError('name-error'));
-  emailInput.addEventListener('input', () => clearFieldError('email-error'));
-  messageInput.addEventListener('input', () => clearFieldError('message-error'));
+  <section id="projects" class="projects">
+    <div class="container">
+      <h2 class="section-title">My Projects</h2>
+      <div class="project-grid">
+        <div class="project-card">
+          <div class="project-image">
+            <i class="bi bi-robot fs-1 text-warning"></i>
+          </div>
+          <h3>Robotic Process Automation</h3>
+          <p>Automated data entry and validation system that streamlines repetitive tasks, reducing manual errors by 90% and increasing productivity.</p>
+          <div class="tech-stack">
+            <span class="tech-tag">Python</span>
+            <span class="tech-tag">Selenium</span>
+            <span class="tech-tag">Pandas</span>
+          </div>
+          <div class="project-links">
+            <a href="https://github.com/Makgale26" target="_blank" class="project-link">
+              <i class="bi bi-github"></i> Code
+            </a>
+            <a href="#" class="project-link">
+              <i class="bi bi-eye"></i> Demo
+            </a>
+          </div>
+        </div>
+        <div class="project-card">
+          <div class="project-image">
+            <i class="bi bi-cloud fs-1 text-primary"></i>
+          </div>
+          <h3>API .NET Framework</h3>
+          <p>RESTful API built with .NET Framework, integrated with Azure SQL Database for secure data management and real-time operations.</p>
+          <div class="tech-stack">
+            <span class="tech-tag">C#</span>
+            <span class="tech-tag">.NET</span>
+            <span class="tech-tag">Azure</span>
+            <span class="tech-tag">SQL</span>
+          </div>
+          <div class="project-links">
+            <a href="https://github.com/Makgale26" target="_blank" class="project-link">
+              <i class="bi bi-github"></i> Code
+            </a>
+            <a href="#" class="project-link">
+              <i class="bi bi-eye"></i> Demo
+            </a>
+          </div>
+        </div>
+        <div class="project-card">
+          <div class="project-image">
+            <i class="bi bi-globe fs-1 text-success"></i>
+          </div>
+          <h3>Personal Portfolio</h3>
+          <p>Responsive portfolio website showcasing my skills and projects, built with modern HTML5, CSS3, and JavaScript.</p>
+          <div class="tech-stack">
+            <span class="tech-tag">HTML5</span>
+            <span class="tech-tag">CSS3</span>
+            <span class="tech-tag">JavaScript</span>
+            <span class="tech-tag">Bootstrap</span>
+          </div>
+          <div class="project-links">
+            <a href="https://github.com/Makgale26" target="_blank" class="project-link">
+              <i class="bi bi-github"></i> Code
+            </a>
+            <a href="#" class="project-link">
+              <i class="bi bi-eye"></i> Live
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-  form.addEventListener('submit', function(e) {
-    e.preventDefault();
-    
-    // Clear previous errors
-    clearErrors();
-    
-    // Validate all fields
-    let isValid = true;
-    isValid = validateField('name') && isValid;
-    isValid = validateField('email') && isValid;
-    isValid = validateField('message') && isValid;
-    
-    if (isValid) {
-      // Simulate form submission
-      submitBtn.innerHTML = '<i class="bi bi-hourglass-split"></i> Sending...';
-      submitBtn.disabled = true;
-      submitBtn.classList.add('loading');
-      
-      setTimeout(() => {
-        showSuccessMessage('Thank you for your message! I\'ll get back to you soon.');
-        form.reset();
-        submitBtn.innerHTML = '<i class="bi bi-send"></i> Send Message';
-        submitBtn.disabled = false;
-        submitBtn.classList.remove('loading');
-      }, 2000);
-    } else {
-      // Shake form on validation error
-      form.classList.add('shake');
-      setTimeout(() => form.classList.remove('shake'), 500);
-    }
-  });
+  <section id="Tech" class="Tech">
+    <div class="container">
+      <h2 class="section-title">Tech I'm Familiar With</h2>
+      <div class="Tech-grid">
+        <div class="Tech-card">
+          <i class="bi bi-code-square fs-1 text-danger"></i>
+          <h3>HTML5</h3>
+        </div>
+        <div class="Tech-card">
+          <i class="bi bi-palette fs-1 text-primary"></i>
+          <h3>CSS3</h3>
+        </div>
+        <div class="Tech-card">
+          <i class="bi bi-braces fs-1 text-warning"></i>
+          <h3>JavaScript</h3>
+        </div>
+        <div class="Tech-card">
+          <i class="bi bi-code fs-1 text-success"></i>
+          <h3>Python</h3>
+        </div>
+        <div class="Tech-card">
+          <i class="bi bi-windows fs-1 text-primary"></i>
+          <h3>C# / .NET</h3>
+        </div>
+        <div class="Tech-card">
+          <i class="bi bi-lightning-charge fs-1 text-info"></i>
+          <h3>Power Apps</h3>
+        </div>
+        <div class="Tech-card">
+          <i class="bi bi-arrow-repeat fs-1 text-secondary"></i>
+          <h3>Power Automate</h3>
+        </div>
+        <div class="Tech-card">
+          <i class="bi bi-cpu fs-1 text-muted"></i>
+          <h3>C/C++</h3>
+        </div>
+      </div>
+    </div>
+  </section>
 
-  function validateField(fieldName) {
-    const input = document.getElementById(fieldName);
-    const value = input.value.trim();
-    let isValid = true;
-    let errorMessage = '';
+  <section class="contributions-section">
+    <div class="container">
+      <h2 class="section-title">GitHub Contributions</h2>
+      <p class="section-subtitle">My commits over the years</p>
 
-    switch(fieldName) {
-      case 'name':
-        if (!value) {
-          errorMessage = 'Name is required';
-          isValid = false;
-        } else if (value.length < 2) {
-          errorMessage = 'Name must be at least 2 characters';
-          isValid = false;
-        } else if (!/^[a-zA-Z\s]+$/.test(value)) {
-          errorMessage = 'Name should only contain letters and spaces';
-          isValid = false;
-        }
-        break;
-        
-      case 'email':
-        if (!value) {
-          errorMessage = 'Email is required';
-          isValid = false;
-        } else if (!isValidEmail(value)) {
-          errorMessage = 'Please enter a valid email address';
-          isValid = false;
-        }
-        break;
-        
-      case 'message':
-        if (!value) {
-          errorMessage = 'Message is required';
-          isValid = false;
-        } else if (value.length < 10) {
-          errorMessage = 'Message must be at least 10 characters';
-          isValid = false;
-        } else if (value.length > 1000) {
-          errorMessage = 'Message must be less than 1000 characters';
-          isValid = false;
-        }
-        break;
-    }
+      <div class="gallery">
+        <!-- Live Contribution Graph -->
+        <div class="card">
+          <img src="https://github-readme-activity-graph.vercel.app/graph?username=Makgale26&bg_color=0f0f0f&color=00ffcc&line=00ffcc&point=ffffff&hide_border=true"
+               alt="GitHub Contribution Calendar"
+               style="height: 180px; width: 100%; object-fit: cover;">
+          <div class="card-content">
+            <h3>Live Heatmap</h3>
+            <p>Updated daily from GitHub</p>
+          </div>
+        </div>
 
-    if (!isValid) {
-      showError(fieldName + '-error', errorMessage);
-      input.classList.add('error');
-    } else {
-      clearFieldError(fieldName + '-error');
-      input.classList.remove('error');
-      input.classList.add('valid');
-    }
+        <!-- Dynamic Stats -->
+        <div class="card">
+          <img src="https://github-readme-stats.vercel.app/api?username=Makgale26&show_icons=true&theme=dark&hide_border=false"
+               alt="GitHub Stats"
+               style="height: 180px; width: 100%; object-fit: fill;">
+          <div class="card-content">
+            <h3>Stats</h3>
+            <p>Repos, Commits, PRs</p>
+          </div>
+        </div>
 
-    return isValid;
-  }
+        <!-- Top Languages -->
+        <div class="card">
+          <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=Makgale26&layout=compact&theme=dark&hide_border=false"
+               alt="Top Programming Languages"
+               style="width: 100%; max-width: 400px; height: auto; object-fit: contain;">
+          <div class="card-content">
+            <h3>Top Languages</h3>
+            <p>Used in my projects</p>
+          </div>
+        </div>
 
-  function showError(elementId, message) {
-    const errorElement = document.getElementById(elementId);
-    const input = errorElement.parentElement.querySelector('input, textarea');
-    
-    if (errorElement) {
-      errorElement.textContent = message;
-      errorElement.classList.add('show');
-    }
-    
-    if (input) {
-      input.classList.add('error');
-      input.classList.remove('valid');
-    }
-  }
+        <!-- 2024 Commits (Static) -->
+        <div class="card">
+          <img src="asset/first.PNG" alt="2024 Contributions">
+          <div class="card-content">
+            <h3>2024</h3>
+            <p>Commits: 108</p>
+          </div>
+        </div>
 
-  function clearFieldError(elementId) {
-    const errorElement = document.getElementById(elementId);
-    if (errorElement && errorElement.classList.contains('show')) {
-      errorElement.textContent = '';
-      errorElement.classList.remove('show');
-    }
-  }
+  </section>
+<!--Contact section -->
+  <section id="contact" class="contact">
+    <div class="container">
+      <h2 class="section-title">Contact Me</h2>
+      <p class="contact-subtitle">Let's discuss your next project or potential collaboration</p>
+      <form id="contact-form">
+        <div class="form-group">
+          <input type="text" id="name" name="name" placeholder="Your Name" required />
+          <span class="error-message" id="name-error"></span>
+        </div>
+        <div class="form-group">
+          <input type="email" id="email" name="email" placeholder="Your Email" required />
+          <span class="error-message" id="email-error"></span>
+        </div>
+        <div class="form-group">
+          <textarea id="message" name="message" placeholder="Your Message" rows="5" required></textarea>
+          <span class="error-message" id="message-error"></span>
+        </div>
+        <button type="submit" class="btn" id="submit-btn">
+          <i class="bi bi-send"></i> Send Message
+        </button>
+      </form>
+      <div class="contact-info">
+        <div class="contact-item">
+          <i class="bi bi-envelope"></i>
+          <span>kutullomakgale@gmail.com</span>
+        </div>
+        <div class="contact-item">
+          <i class="bi bi-geo-alt"></i>
+          <span>Available for remote work</span>
+        </div>
+      </div>
+    </div>
+  </section>
 
-  function clearErrors() {
-    const errorElements = document.querySelectorAll('.error-message');
-    const inputs = document.querySelectorAll('#contact-form input, #contact-form textarea');
-    
-    errorElements.forEach(element => {
-      element.textContent = '';
-      element.classList.remove('show');
-    });
-    
-    inputs.forEach(input => {
-      input.classList.remove('error', 'valid');
-    });
-  }
+  <footer class="text-center mt-4">
+    <p>
+      <a href="mailto:kutullomakgale@gmail.com" class="me-3 text-danger" aria-label="Email">
+        <i class="bi bi-envelope fs-3"></i>
+      </a>
+      <a href="https://www.linkedin.com/in/kutullo-radingwana-4825b7319/" target="_blank" rel="noopener noreferrer" class="me-3 text-info" aria-label="LinkedIn">
+        <i class="bi bi-linkedin fs-3 text-primary"></i>
+      </a>
+      <a href="https://github.com/Makgale26" target="_blank" rel="noopener noreferrer" class="text-secondary" aria-label="GitHub">
+        <i class="bi bi-github fs-3"></i>
+      </a>
+      <a href="https://wa.me/27783466280" target="_blank" rel="noopener noreferrer" class="text-success" aria-label="WhatsApp">
+        <i class="bi bi-whatsapp fs-3"></i>
+      </a>
+      <a href="https://www.facebook.com/Kutullo_M_Radingwana" target="_blank" rel="noopener noreferrer" class="text-primary" aria-label="Facebook">
+        <i class="bi bi-facebook fs-3"></i>
+      </a>
+    </p>
+    <p>© 2025 Makgale. All rights reserved.</p>
+  </footer>
 
-  function showSuccessMessage(message) {
-    // Create success notification
-    const successDiv = document.createElement('div');
-    successDiv.className = 'success-notification';
-    successDiv.innerHTML = `
-      <i class="bi bi-check-circle-fill"></i>
-      <span>${message}</span>
-    `;
-    
-    // Insert before form
-    form.parentNode.insertBefore(successDiv, form);
-    
-    // Animate in
-    setTimeout(() => successDiv.classList.add('show'), 100);
-    
-    // Remove after 5 seconds
-    setTimeout(() => {
-      successDiv.classList.remove('show');
-      setTimeout(() => successDiv.remove(), 300);
-    }, 5000);
-  }
-
-  function isValidEmail(email) {
-    const emailRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
-    return emailRegex.test(email);
-  }
-}
-
-// Initialize everything when DOM is loaded
-document.addEventListener('DOMContentLoaded', function() {
-  initTypingAnimation();
-  initNavigation();
-  initThemeToggle();
-  initGraphicsFilter();
-  initContactForm();
-  
-  // Animate stats when they come into view
-  const statsSection = document.querySelector('.stats');
-  console.log('Stats section found:', statsSection); // Debug log
-  
-  if (statsSection) {
-    let animationTriggered = false;
-    
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting && !animationTriggered) {
-          console.log('Stats section intersecting, triggering animation');
-          animationTriggered = true;
-          setTimeout(() => {
-            animateStats();
-          }, 200);
-          observer.unobserve(entry.target);
-        }
-      });
-    }, {
-      threshold: 0.3 // Trigger when 30% of the stats section is visible
-    });
-    
-    observer.observe(statsSection);
-    
-    // Manual trigger after page load as fallback
-    setTimeout(() => {
-      if (!animationTriggered) {
-        console.log('Fallback: triggering stats animation');
-        animateStats();
-        animationTriggered = true;
-      }
-    }, 2000);
-    
-    // Also add a click handler for testing
-    statsSection.addEventListener('click', () => {
-      console.log('Stats section clicked, triggering animation');
-      animateStats();
-    });
-  } else {
-    console.error('Stats section not found');
-  }
-});
+  <!-- Your JS -->
+  <script src="script.js"></script>
+</body>
+</html>
