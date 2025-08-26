@@ -122,8 +122,6 @@ function initThemeToggle() {
 
 // Stats Animation
 function animateStats() {
-  console.log('animateStats called'); // Debug log
-  
   const statNumbers = {
     exp: 2,
     proj: 15,
@@ -133,35 +131,40 @@ function animateStats() {
 
   Object.keys(statNumbers).forEach((id, index) => {
     const element = document.getElementById(id);
-    console.log(`Element ${id}:`, element); // Debug log
     
     if (element) {
       const target = statNumbers[id];
       let current = 0;
       const duration = 2000;
-      const steps = 40;
-      const increment = target / steps;
-      const stepTime = duration / steps;
+      const totalSteps = 60;
+      const stepTime = duration / totalSteps;
       
       // Reset to 0 first
       element.textContent = '0';
       
       // Add delay for each stat
       setTimeout(() => {
-        let step = 0;
         const timer = setInterval(() => {
-          step++;
-          current = Math.min(step * increment, target);
-          element.textContent = Math.floor(current);
+          if (target <= 20) {
+            // For small numbers, increment by 1
+            current += 1;
+          } else if (target <= 100) {
+            // For medium numbers, increment by 2-3
+            current += Math.ceil(target / 30);
+          } else {
+            // For large numbers, increment more
+            current += Math.ceil(target / 40);
+          }
           
-          if (step >= steps) {
-            element.textContent = target; // Ensure exact final value
+          if (current >= target) {
+            current = target;
+            element.textContent = target;
             clearInterval(timer);
+          } else {
+            element.textContent = Math.floor(current);
           }
         }, stepTime);
-      }, index * 300); // 300ms delay between each stat
-    } else {
-      console.error(`Element with id '${id}' not found`);
+      }, index * 400); // 400ms delay between each stat
     }
   });
 }
