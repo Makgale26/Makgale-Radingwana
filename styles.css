@@ -75,7 +75,13 @@ header {
   position: relative;
   max-width: 1100px;
   margin: 0 auto;
-  padding: 0 2rem;
+  padding: 0 1rem;
+}
+
+@media (min-width: 768px) {
+  .container.nav {
+    padding: 0 2rem;
+  }
 }
 
 .logo, .logo h1 {
@@ -171,34 +177,52 @@ header {
 
 /* Mobile Navigation Styles */
 @media (max-width: 768px) {
+  .container.nav {
+    padding: 0 1rem;
+  }
+
   .nav-toggle {
     display: block;
+    position: relative;
+    top: 0;
+    right: 0;
+  }
+
+  .nav-tabs {
+    position: static;
   }
 
   .nav-links {
     flex-direction: column;
-    background: rgba(17, 17, 17, 0.95);
-    position: absolute;
+    background: rgba(17, 17, 17, 0.98);
+    position: fixed;
     top: 70px;
+    left: 0;
     right: 0;
-    width: 280px;
-    max-width: 90vw;
-    border-radius: 15px;
+    width: 100%;
+    max-width: none;
+    border-radius: 0;
     padding: 20px;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
     opacity: 0;
     visibility: hidden;
     transform: translateY(-20px);
     transition: all 0.3s ease;
     backdrop-filter: blur(20px);
-    border: 1px solid rgba(0, 255, 204, 0.2);
+    border: none;
+    border-bottom: 1px solid rgba(0, 255, 204, 0.2);
     gap: 8px;
+    z-index: 1000;
   }
 
   .nav-links.show {
     opacity: 1;
     visibility: visible;
     transform: translateY(0);
+  }
+
+  .nav-links li {
+    width: 100%;
   }
 
   .nav-tab {
@@ -208,6 +232,7 @@ header {
     margin: 4px 0;
     border-radius: 12px;
     font-size: 1rem;
+    display: block;
   }
 
   .nav-tab.active {
@@ -1388,9 +1413,16 @@ header {
 
 /* === RESPONSIVE DESIGN === */
 @media (max-width: 768px) {
+  /* Hero Section */
+  .hero {
+    padding: 40px 20px;
+    min-height: 90vh;
+  }
+
   .hero .container {
     flex-direction: column;
     text-align: center;
+    gap: 20px;
   }
 
   .hero-content {
@@ -1399,32 +1431,148 @@ header {
 
   .hero-media {
     order: 1;
-    margin-bottom: 30px;
+    margin-bottom: 20px;
   }
 
   .hero-content h2 {
-    font-size: 2.2rem;
+    font-size: 2rem;
   }
 
-  .nav-links {
-    display: none;
-    flex-direction: column;
+  .hero-subtitle {
+    font-size: 1.1rem;
+  }
+
+  /* Services Section */
+  .services-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .service-card {
+    padding: 2rem 1.5rem;
+  }
+
+  /* Graphics Section */
+  .category-tabs {
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .category-tab {
+    padding: 10px 16px;
+    font-size: 0.9rem;
+  }
+
+  .graphics-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  /* Projects Section */
+  .project-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .project-card {
+    padding: 1.5rem;
+  }
+
+  /* Tech Section */
+  .Tech-grid {
+    grid-template-columns: repeat(2, 1fr);
     gap: 1rem;
-    background-color: #111;
-    position: absolute;
-    top: 60px;
-    right: 0;
-    width: 200px;
+  }
+
+  .Tech-card {
     padding: 1rem;
-    border-radius: 0 0 0 10px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+    max-width: none;
   }
 
-  .nav-links.show {
-    display: flex;
+  /* Stats Section */
+  .stats {
+    padding: 3rem 1rem;
   }
 
-  .container.nav {
-    padding-right: 3rem;
+  .stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+
+  .stat-item {
+    padding: 1rem;
+  }
+
+  .stat-item h3 {
+    font-size: 2rem;
+  }
+
+  /* Contact Section */
+  .contact {
+    padding: 40px 20px;
+  }
+
+  .contact-info {
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  /* Contributions Section */
+  .contributions-section {
+    padding: 40px 20px;
+  }
+
+  .contributions-section .gallery {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  /* General */
+  .container {
+    padding: 0 1rem;
+  }
+
+  .section-title {
+    font-size: 1.6rem;
+    margin-bottom: 2rem;
+  }
+
+  /* Services list */
+  .services-list {
+    grid-template-columns: 1fr;
+  }
+
+  /* Design services */
+  .design-services {
+    padding: 2rem 1.5rem;
+  }
+}
+
+/* Extra small screens */
+@media (max-width: 480px) {
+  .hero-content h2 {
+    font-size: 1.8rem;
+  }
+
+  .hero-subtitle {
+    font-size: 1rem;
+  }
+
+  .stats-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .Tech-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .category-tabs {
+    justify-content: flex-start;
+    overflow-x: auto;
+    padding-bottom: 10px;
+  }
+
+  .category-tab {
+    flex-shrink: 0;
   }
 }
