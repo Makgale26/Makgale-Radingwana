@@ -99,10 +99,10 @@ window.toggleTheme = function() {
   body.classList.toggle('light-mode');
   
   if (body.classList.contains('light-mode')) {
-    themeIcon.classList.replace('bi-moon-fill', 'bi-sun-fill');
+    themeIcon.classList.replace('bi-sun-fill', 'bi-moon-fill');
     localStorage.setItem('theme', 'light');
   } else {
-    themeIcon.classList.replace('bi-sun-fill', 'bi-moon-fill');
+    themeIcon.classList.replace('bi-moon-fill', 'bi-sun-fill');
     localStorage.setItem('theme', 'dark');
   }
 }
@@ -116,7 +116,7 @@ function initThemeToggle() {
   
   if (savedTheme === 'light') {
     document.body.classList.add('light-mode');
-    icon.classList.replace('bi-moon-fill', 'bi-sun-fill');
+    icon.classList.replace('bi-sun-fill', 'bi-moon-fill');
   }
 }
 
