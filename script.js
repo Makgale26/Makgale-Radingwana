@@ -202,70 +202,170 @@ function initContactForm() {
 
   if (!form) return;
 
+  // Real-time validation on input
+  const nameInput = document.getElementById('name');
+  const emailInput = document.getElementById('email');
+  const messageInput = document.getElementById('message');
+
+  // Add real-time validation listeners
+  nameInput.addEventListener('blur', () => validateField('name'));
+  emailInput.addEventListener('blur', () => validateField('email'));
+  messageInput.addEventListener('blur', () => validateField('message'));
+
+  // Clear errors on input
+  nameInput.addEventListener('input', () => clearFieldError('name-error'));
+  emailInput.addEventListener('input', () => clearFieldError('email-error'));
+  messageInput.addEventListener('input', () => clearFieldError('message-error'));
+
   form.addEventListener('submit', function(e) {
     e.preventDefault();
-    
-    // Get form elements
-    const nameInput = document.getElementById('name');
-    const emailInput = document.getElementById('email');
-    const messageInput = document.getElementById('message');
     
     // Clear previous errors
     clearErrors();
     
-    // Validate
+    // Validate all fields
     let isValid = true;
-    
-    if (!nameInput.value.trim()) {
-      showError('name-error', 'Name is required');
-      isValid = false;
-    }
-    
-    if (!emailInput.value.trim()) {
-      showError('email-error', 'Email is required');
-      isValid = false;
-    } else if (!isValidEmail(emailInput.value)) {
-      showError('email-error', 'Please enter a valid email');
-      isValid = false;
-    }
-    
-    if (!messageInput.value.trim()) {
-      showError('message-error', 'Message is required');
-      isValid = false;
-    }
+    isValid = validateField('name') && isValid;
+    isValid = validateField('email') && isValid;
+    isValid = validateField('message') && isValid;
     
     if (isValid) {
       // Simulate form submission
-      submitBtn.textContent = 'Sending...';
+      submitBtn.innerHTML = '<i class="bi bi-hourglass-split"></i> Sending...';
       submitBtn.disabled = true;
+      submitBtn.classList.add('loading');
       
       setTimeout(() => {
-        alert('Thank you for your message! I\'ll get back to you soon.');
+        showSuccessMessage('Thank you for your message! I\'ll get back to you soon.');
         form.reset();
         submitBtn.innerHTML = '<i class="bi bi-send"></i> Send Message';
         submitBtn.disabled = false;
+        submitBtn.classList.remove('loading');
       }, 2000);
+    } else {
+      // Shake form on validation error
+      form.classList.add('shake');
+      setTimeout(() => form.classList.remove('shake'), 500);
     }
   });
 
+  function validateField(fieldName) {
+    const input = document.getElementById(fieldName);
+    const value = input.value.trim();
+    let isValid = true;
+    let errorMessage = '';
+
+    switch(fieldName) {
+      case 'name':
+        if (!value) {
+          errorMessage = 'Name is required';
+          isValid = false;
+        } else if (value.length < 2) {
+          errorMessage = 'Name must be at least 2 characters';
+          isValid = false;
+        } else if (!/^[a-zA-Z\s]+$/.test(value)) {
+          errorMessage = 'Name should only contain letters and spaces';
+          isValid = false;
+        }
+        break;
+        
+      case 'email':
+        if (!value) {
+          errorMessage = 'Email is required';
+          isValid = false;
+        } else if (!isValidEmail(value)) {
+          errorMessage = 'Please enter a valid email address';
+          isValid = false;
+        }
+        break;
+        
+      case 'message':
+        if (!value) {
+          errorMessage = 'Message is required';
+          isValid = false;
+        } else if (value.length < 10) {
+          errorMessage = 'Message must be at least 10 characters';
+          isValid = false;
+        } else if (value.length > 1000) {
+          errorMessage = 'Message must be less than 1000 characters';
+          isValid = false;
+        }
+        break;
+    }
+
+    if (!isValid) {
+      showError(fieldName + '-error', errorMessage);
+      input.classList.add('error');
+    } else {
+      clearFieldError(fieldName + '-error');
+      input.classList.remove('error');
+      input.classList.add('valid');
+    }
+
+    return isValid;
+  }
+
   function showError(elementId, message) {
     const errorElement = document.getElementById(elementId);
+    const input = errorElement.parentElement.querySelector('input, textarea');
+    
     if (errorElement) {
       errorElement.textContent = message;
       errorElement.classList.add('show');
+    }
+    
+    if (input) {
+      input.classList.add('error');
+      input.classList.remove('valid');
+    }
+  }
+
+  function clearFieldError(elementId) {
+    const errorElement = document.getElementById(elementId);
+    if (errorElement && errorElement.classList.contains('show')) {
+      errorElement.textContent = '';
+      errorElement.classList.remove('show');
     }
   }
 
   function clearErrors() {
     const errorElements = document.querySelectorAll('.error-message');
+    const inputs = document.querySelectorAll('#contact-form input, #contact-form textarea');
+    
     errorElements.forEach(element => {
       element.textContent = '';
       element.classList.remove('show');
     });
+    
+    inputs.forEach(input => {
+      input.classList.remove('error', 'valid');
+    });
+  }
+
+  function showSuccessMessage(message) {
+    // Create success notification
+    const successDiv = document.createElement('div');
+    successDiv.className = 'success-notification';
+    successDiv.innerHTML = `
+      <i class="bi bi-check-circle-fill"></i>
+      <span>${message}</span>
+    `;
+    
+    // Insert before form
+    form.parentNode.insertBefore(successDiv, form);
+    
+    // Animate in
+    setTimeout(() => successDiv.classList.add('show'), 100);
+    
+    // Remove after 5 seconds
+    setTimeout(() => {
+      successDiv.classList.remove('show');
+      setTimeout(() => successDiv.remove(), 300);
+    }, 5000);
   }
 
   function isValidEmail(email) {
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const emailRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
     return emailRegex.test(email);
   }
 }
