@@ -129,21 +129,25 @@ function animateStats() {
     commits: 500
   };
 
-  Object.keys(statNumbers).forEach(id => {
+  Object.keys(statNumbers).forEach((id, index) => {
     const element = document.getElementById(id);
     if (element) {
       const target = statNumbers[id];
       let current = 0;
-      const increment = target / 50;
+      const duration = 2000; // 2 seconds
+      const increment = target / (duration / 50);
       
-      const timer = setInterval(() => {
-        current += increment;
-        if (current >= target) {
-          current = target;
-          clearInterval(timer);
-        }
-        element.textContent = Math.floor(current);
-      }, 50);
+      // Add delay for each stat
+      setTimeout(() => {
+        const timer = setInterval(() => {
+          current += increment;
+          if (current >= target) {
+            current = target;
+            clearInterval(timer);
+          }
+          element.textContent = Math.floor(current);
+        }, 50);
+      }, index * 200); // 200ms delay between each stat
     }
   });
 }
@@ -261,14 +265,26 @@ document.addEventListener('DOMContentLoaded', function() {
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting && entry.target.classList.contains('stats')) {
-        animateStats();
+        // Add a small delay to ensure visibility
+        setTimeout(() => {
+          animateStats();
+        }, 100);
         observer.unobserve(entry.target);
       }
     });
+  }, {
+    threshold: 0.5 // Trigger when 50% of the stats section is visible
   });
   
   const statsSection = document.querySelector('.stats');
   if (statsSection) {
     observer.observe(statsSection);
+    
+    // Also trigger animation on page load as fallback
+    setTimeout(() => {
+      if (window.scrollY < 500) { // If near top of page
+        animateStats();
+      }
+    }, 1000);
   }
 });
