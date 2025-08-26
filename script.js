@@ -33,7 +33,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const step = Math.ceil(end / 100);
     const el = document.getElementById(id);
     const h3 = el.closest('h3');
-  
+
     const timer = setInterval(() => {
       start += step;
       if (start >= end) {
@@ -100,7 +100,7 @@ const texts = [
   const icon = toggle.querySelector('i');
 
   // Check user's preference
-  const isDark = localStorage.getItem('dark-mode') === 'enabled' || 
+  const isDark = localStorage.getItem('dark-mode') === 'enabled' ||
                  !window.matchMedia('(prefers-color-scheme: light)').matches;
 
   if (isDark) {
@@ -152,43 +152,43 @@ const texts = [
   if (contactForm) {
     contactForm.addEventListener('submit', function(e) {
       e.preventDefault();
-      
+
       const name = document.getElementById('name').value.trim();
       const email = document.getElementById('email').value.trim();
       const message = document.getElementById('message').value.trim();
-      
+
       let isValid = true;
-      
+
       // Clear previous errors
       document.querySelectorAll('.error-message').forEach(error => {
         error.textContent = '';
         error.classList.remove('show');
       });
-      
+
       // Validate name
       if (name.length < 2) {
         showError('name-error', 'Name must be at least 2 characters long');
         isValid = false;
       }
-      
+
       // Validate email
       const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
       if (!emailRegex.test(email)) {
         showError('email-error', 'Please enter a valid email address');
         isValid = false;
       }
-      
+
       // Validate message
       if (message.length < 10) {
         showError('message-error', 'Message must be at least 10 characters long');
         isValid = false;
       }
-      
+
       if (isValid) {
         // Simulate form submission
         submitBtn.innerHTML = '<i class="bi bi-check-circle"></i> Message Sent!';
         submitBtn.disabled = true;
-        
+
         setTimeout(() => {
           contactForm.reset();
           submitBtn.innerHTML = '<i class="bi bi-send"></i> Send Message';
@@ -213,11 +213,11 @@ const texts = [
   // Update active tab based on scroll position
   function updateActiveTab() {
     let currentSection = '';
-    
+
     sections.forEach(section => {
       const sectionTop = section.offsetTop - 100;
       const sectionHeight = section.offsetHeight;
-      
+
       if (window.scrollY >= sectionTop && window.scrollY < sectionTop + sectionHeight) {
         currentSection = section.getAttribute('id');
       }
@@ -235,15 +235,15 @@ const texts = [
   document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
       e.preventDefault();
-      
+
       // Remove active class from all tabs
       navTabs.forEach(tab => tab.classList.remove('active'));
-      
+
       // Add active class to clicked tab
       if (this.classList.contains('nav-tab')) {
         this.classList.add('active');
       }
-      
+
       const target = document.querySelector(this.getAttribute('href'));
       if (target) {
         target.scrollIntoView({
@@ -251,7 +251,7 @@ const texts = [
           block: 'start'
         });
       }
-      
+
       // Close mobile menu if open
       navLinks.classList.remove('show');
       navToggle.setAttribute('aria-expanded', 'false');
@@ -260,8 +260,51 @@ const texts = [
 
   // Update active tab on scroll
   window.addEventListener('scroll', updateActiveTab);
-  
+
   // Set initial active tab
   updateActiveTab();
+});
 
+// Initialize everything when page loads
+document.addEventListener('DOMContentLoaded', function() {
+  initNavigation();
+  initTypingAnimation();
+  initStats();
+  initContactForm();
+  initThemeToggle();
+  initGraphicsFilter();
+});
 
+// Graphics section category filtering
+function initGraphicsFilter() {
+  const categoryTabs = document.querySelectorAll('.category-tab');
+  const designCards = document.querySelectorAll('.design-card');
+
+  categoryTabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      // Remove active class from all tabs
+      categoryTabs.forEach(t => t.classList.remove('active'));
+      // Add active class to clicked tab
+      tab.classList.add('active');
+
+      const category = tab.getAttribute('data-category');
+
+      // Filter design cards
+      designCards.forEach(card => {
+        if (category === 'all' || card.getAttribute('data-category') === category) {
+          card.style.display = 'block';
+          setTimeout(() => {
+            card.style.opacity = '1';
+            card.style.transform = 'scale(1)';
+          }, 50);
+        } else {
+          card.style.opacity = '0';
+          card.style.transform = 'scale(0.8)';
+          setTimeout(() => {
+            card.style.display = 'none';
+          }, 300);
+        }
+      });
+    });
+  });
+}

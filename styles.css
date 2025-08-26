@@ -573,6 +573,245 @@ header {
   color: #3498db;
 }
 
+/* === GRAPHICS SECTION === */
+.graphics {
+  padding: 4rem 2rem;
+  background: #0f0f0f;
+}
+
+.graphics .container {
+  max-width: 1200px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.graphics .section-subtitle {
+  color: #aaa;
+  font-size: 1.1rem;
+  margin-bottom: 3rem;
+}
+
+.design-categories {
+  margin-top: 2rem;
+}
+
+.category-tabs {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+}
+
+.category-tab {
+  background: #222;
+  color: #ccc;
+  border: 2px solid #333;
+  padding: 12px 24px;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-weight: 600;
+}
+
+.category-tab:hover {
+  color: #00ffcc;
+  border-color: #00ffcc;
+}
+
+.category-tab.active {
+  background: #00ffcc;
+  color: #000;
+  border-color: #00ffcc;
+}
+
+.graphics-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  margin-bottom: 3rem;
+}
+
+.design-card {
+  background: #222;
+  border-radius: 15px;
+  overflow: hidden;
+  position: relative;
+  height: 250px;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+  border: 1px solid #333;
+}
+
+.design-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 15px 30px rgba(0, 255, 204, 0.2);
+}
+
+.design-image {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  background: linear-gradient(135deg, #1a1a1a, #2a2a2a);
+}
+
+.design-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(transparent, rgba(0, 0, 0, 0.9));
+  padding: 2rem 1.5rem 1.5rem;
+  transform: translateY(80%);
+  transition: transform 0.3s ease;
+}
+
+.design-card:hover .design-overlay {
+  transform: translateY(0);
+}
+
+.design-overlay h3 {
+  color: #00ffcc;
+  margin-bottom: 0.5rem;
+  font-size: 1.2rem;
+}
+
+.design-overlay p {
+  color: #ccc;
+  margin-bottom: 1rem;
+  font-size: 0.9rem;
+  line-height: 1.4;
+}
+
+.design-tools {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.tool-tag {
+  background: rgba(0, 255, 204, 0.2);
+  color: #00ffcc;
+  padding: 0.3rem 0.8rem;
+  border-radius: 15px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  border: 1px solid rgba(0, 255, 204, 0.3);
+}
+
+.design-services {
+  background: #1a1a1a;
+  padding: 2.5rem;
+  border-radius: 15px;
+  margin-top: 3rem;
+}
+
+.design-services h3 {
+  color: #00ffcc;
+  margin-bottom: 2rem;
+  font-size: 1.5rem;
+}
+
+.services-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1rem;
+}
+
+.service-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  color: #ccc;
+  font-size: 1rem;
+  padding: 0.5rem;
+}
+
+.service-item i {
+  font-size: 1.2rem;
+}
+
+/* Light Mode Graphics */
+.light-mode .graphics {
+  background: #f8f9fa;
+}
+
+.light-mode .graphics .section-subtitle {
+  color: #7f8c8d;
+}
+
+.light-mode .category-tab {
+  background: #ffffff;
+  color: #2c3e50;
+  border-color: #e9ecef;
+}
+
+.light-mode .category-tab:hover {
+  color: #3498db;
+  border-color: #3498db;
+}
+
+.light-mode .category-tab.active {
+  background: #3498db;
+  color: #ffffff;
+  border-color: #3498db;
+}
+
+.light-mode .design-card {
+  background: #ffffff;
+  border-color: #e9ecef;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.light-mode .design-card:hover {
+  box-shadow: 0 15px 30px rgba(52, 152, 219, 0.2);
+}
+
+.light-mode .design-image {
+  background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+}
+
+.light-mode .design-overlay {
+  background: linear-gradient(transparent, rgba(255, 255, 255, 0.95));
+}
+
+.light-mode .design-overlay h3 {
+  color: #3498db;
+}
+
+.light-mode .design-overlay p {
+  color: #5a6c7d;
+}
+
+.light-mode .tool-tag {
+  background: rgba(52, 152, 219, 0.1);
+  color: #3498db;
+  border-color: rgba(52, 152, 219, 0.3);
+}
+
+.light-mode .design-services {
+  background: #ffffff;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.light-mode .design-services h3 {
+  color: #3498db;
+}
+
+.light-mode .service-item {
+  color: #2c3e50;
+}
+
+/* Purple color for variety */
+.text-purple {
+  color: #9b59b6 !important;
+}
+
+.light-mode .text-purple {
+  color: #8e44ad !important;
+}
+
 /* === PROJECTS SECTION === */
 .projects {
   padding: 4rem 2rem;
