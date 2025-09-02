@@ -1,512 +1,107 @@
-<!DOCTYPE html>
-<html lang="en" style="scroll-behavior: smooth;">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Makgale Portfolio - Full Stack Developer</title>
-  <meta name="description" content="Makgale - Full Stack Developer specializing in React, Node.js, Python, and C#. View my projects and technical skills." />
-  <meta name="keywords" content="Full Stack Developer, React, Node.js, Python, C#, Web Development" />
+// script.js
 
-  <!-- Bootstrap Library -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous" />
+// === Theme Toggle ===
+function toggleTheme() {
+  const body = document.body;
+  const icon = document.querySelector('#theme-toggle i');
+  body.classList.toggle('light-mode');
 
-  <!-- Bootstrap Icons -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css" />
+  if (body.classList.contains('light-mode')) {
+    icon.classList.replace('bi-sun-fill', 'bi-moon-stars-fill');
+  } else {
+    icon.classList.replace('bi-moon-stars-fill', 'bi-sun-fill');
+  }
+}
 
-  <!-- Your CSS -->
-  <link rel="stylesheet" href="styles.css" />
-</head>
-<body>
-  <header>
-    <div class="container nav">
-      <h1>
-        <i class="bi bi-person-circle me-2 text-success"></i>
-        <span style="color: aqua;">Makgale</span>
-      </h1>
+// === Typing Animation ===
+const typingText = document.querySelector('.typing-text');
+const skills = [
+  'Full-Stack Development',
+  'Python & Automation',
+  'C# & .NET APIs',
+  'Cybersecurity',
+  'UI/UX Design'
+];
 
+let skillIndex = 0;
+let charIndex = 0;
+let isDeleting = false;
 
+function type() {
+  const currentSkill = skills[skillIndex];
 
-      <!-- Navigation Links -->
-    <nav class="nav-tabs">
-      <ul class="nav-links">
-        <li><a href="#home" class="nav-tab active">Home</a></li>
-        <li><a href="#services" class="nav-tab">Services</a></li>
-        <li><a href="#graphics" class="nav-tab">Graphics</a></li>
-        <li><a href="#projects" class="nav-tab">Projects</a></li>
-        <li><a href="#Tech" class="nav-tab">Tech</a></li>
-        <li><a href="#contact" class="nav-tab">Contact</a></li>
+  if (isDeleting) {
+    typingText.textContent = currentSkill.substring(0, charIndex - 1);
+    charIndex--;
+  } else {
+    typingText.textContent = currentSkill.substring(0, charIndex + 1);
+    charIndex++;
+  }
 
-        <!-- Theme Toggle Button -->
-        <li>
-          <button onclick="toggleTheme()" id="theme-toggle" aria-label="Toggle theme" title="Toggle theme">
-            <i class="bi bi-sun-fill"></i>
-          </button>
-        </li>
-      </ul>
-    </nav>
-      </nav>
-      <!-- Hamburger button -->
-      <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
-        <i class="bi bi-list"></i>
-      </button>
-    </div>
-  </header>
-  <section id="home" class="hero">
-    <div class="container">
-      <div class="hero-content">
-        <h2>Hello, I'm <span class="highlight">Makgale</span></h2>
-        <p class="hero-subtitle">
-          My expertise includes
-          <span class="typing-text"></span>
-        </p>
-        <a href="assets/Makgale_CV.pdf" class="btn" download>Download CV</a>
-      </div>
+  if (!isDeleting && charIndex === currentSkill.length) {
+    isDeleting = true;
+    setTimeout(type, 1500);
+    return;
+  }
 
-      <div class="hero-media">
-        <video autoplay loop muted playsinline class="wolf-video">
-          <source src="asset/video.mp4" type="video/mp4">
-          Your browser does not support the video tag.
-        </video>
-      </div>
-    </div>
-  </section>
+  if (isDeleting && charIndex === 0) {
+    isDeleting = false;
+    skillIndex = (skillIndex + 1) % skills.length;
+    setTimeout(type, 500);
+    return;
+  }
 
-  <section class="stats">
-  <div class="container">
-    <h2 class="section-title">My Stats</h2>
-    <div class="stats-grid">
-      <div class="stat-item">
-        <h3><span id="exp">2</span></h3>
-        <p>Year Experience</p>
-      </div>
-      <div class="stat-item">
-        <h3><span id="proj">15</span></h3>
-        <p>Projects Completed</p>
-      </div>
-      <div class="stat-item">
-        <h3><span id="tech">12</span></h3>
-        <p>Technologies Mastered</p>
-      </div>
-      <div class="stat-item">
-        <h3><span id="commits">500</span></h3>
-        <p>Code Commits</p>
-      </div>
-    </div>
-  </div>
-</section>
+  const speed = isDeleting ? 30 : 70;
+  setTimeout(type, speed);
+}
 
-  <section id="services" class="services">
-    <div class="container">
-      <h2 class="section-title">My Services</h2>
-      <div class="services-grid">
-        <div class="service-card">
-          <div class="service-icon">
-            <i class="bi bi-code-slash fs-1 text-primary"></i>
-          </div>
-          <h3>Full-Stack Development</h3>
-          <p>Complete web application development using modern technologies like React, Node.js, and databases. From concept to deployment.</p>
-          <ul class="service-features">
-            <li>Frontend Development (React, HTML5, CSS3)</li>
-            <li>Backend APIs (Node.js, .NET, Python)</li>
-            <li>Database Design & Integration</li>
-            <li>Cloud Deployment & Hosting</li>
-          </ul>
-        </div>
+// === Stats Counter Animation ===
+const stats = [
+  { id: 'exp', value: 2 },
+  { id: 'proj', value: 15 },
+  { id: 'tech', value: 12 },
+  { id: 'commits', value: 500 }
+];
 
-        <div class="service-card">
-          <div class="service-icon">
-            <i class="bi bi-robot fs-1 text-warning"></i>
-          </div>
-          <h3>Process Automation</h3>
-          <p>Streamline your business processes with custom automation solutions that reduce manual work and increase efficiency.</p>
-          <ul class="service-features">
-            <li>Robotic Process Automation (RPA)</li>
-            <li>Data Entry & Validation Systems</li>
-            <li>Workflow Optimization</li>
-            <li>Microsoft Power Platform Solutions</li>
-          </ul>
-        </div>
+const duration = 2000;
 
-        <div class="service-card">
-          <div class="service-icon">
-            <i class="bi bi-shield-check fs-1 text-success"></i>
-          </div>
-          <h3>Cybersecurity Analysis</h3>
-          <p>Protect your digital assets with comprehensive security analysis and implementation of best practices.</p>
-          <ul class="service-features">
-            <li>Security Assessment & Auditing</li>
-            <li>Vulnerability Analysis</li>
-            <li>Secure Code Review</li>
-            <li>Security Best Practices Implementation</li>
-          </ul>
-        </div>
+function animateCounter(id, finalValue) {
+  const el = document.getElementById(id);
+  let start = 0;
+  const increment = Math.ceil(finalValue / (duration / 20));
+  const timer = setInterval(() => {
+    start += increment;
+    if (start >= finalValue) {
+      el.textContent = finalValue;
+      clearInterval(timer);
+    } else {
+      el.textContent = start;
+    }
+  }, 20);
+}
 
-        <div class="service-card">
-          <div class="service-icon">
-            <i class="bi bi-graph-up fs-1 text-info"></i>
-          </div>
-          <h3>Data Analysis</h3>
-          <p>Transform your data into actionable insights with advanced analytics and visualization solutions.</p>
-          <ul class="service-features">
-            <li>Data Processing & Cleaning</li>
-            <li>Statistical Analysis</li>
-            <li>Data Visualization</li>
-            <li>Reporting & Dashboard Creation</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </section>
+// Animate when scrolled into view
+const statsSection = document.querySelector('.stats');
+if (statsSection) {
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        stats.forEach(stat => animateCounter(stat.id, stat.value));
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.5 });
 
-  <section id="graphics" class="graphics">
-    <div class="container">
-      <h2 class="section-title">Graphic Design Portfolio</h2>
-      <p class="section-subtitle">Creative visual solutions that communicate your brand's story</p>
+  observer.observe(statsSection);
+}
 
-      <div class="design-categories">
-        <div class="category-tabs">
-          <button class="category-tab active" data-category="all">All Designs</button>
-          <button class="category-tab" data-category="logos">Logos</button>
-          <button class="category-tab" data-category="branding">Branding</button>
-          <button class="category-tab" data-category="web">Web Design</button>
-          <button class="category-tab" data-category="print">Print Design</button>
-        </div>
+// === Mobile Menu Toggle ===
+document.querySelector('.nav-toggle').addEventListener('click', () => {
+  const navLinks = document.querySelector('.nav-links');
+  navLinks.classList.toggle('show');
+});
 
-        <div class="graphics-grid">
-          <div class="design-card" data-category="logos">
-            <div class="design-image">
-              <i class="bi bi-palette2 fs-1 text-warning"></i>
-            </div>
-            <div class="design-overlay">
-              <h3>Logo Design</h3>
-              <p>Modern, memorable logos that represent your brand identity</p>
-              <div class="design-tools">
-                <span class="tool-tag">Illustrator</span>
-                <span class="tool-tag">Photoshop</span>
-              </div>
-            </div>
-          </div>
-
-          <div class="design-card" data-category="branding">
-            <div class="design-image">
-              <i class="bi bi-brush fs-1 text-primary"></i>
-            </div>
-            <div class="design-overlay">
-              <h3>Brand Identity</h3>
-              <p>Complete brand packages including color schemes, typography, and guidelines</p>
-              <div class="design-tools">
-                <span class="tool-tag">Illustrator</span>
-                <span class="tool-tag">InDesign</span>
-              </div>
-            </div>
-          </div>
-
-          <div class="design-card" data-category="web">
-            <div class="design-image">
-              <i class="bi bi-laptop fs-1 text-info"></i>
-            </div>
-            <div class="design-overlay">
-              <h3>UI/UX Design</h3>
-              <p>User-centered web and mobile interface designs with modern aesthetics</p>
-              <div class="design-tools">
-                <span class="tool-tag">Figma</span>
-                <span class="tool-tag">Adobe XD</span>
-              </div>
-            </div>
-          </div>
-
-          <div class="design-card" data-category="print">
-            <div class="design-image">
-              <i class="bi bi-file-earmark-text fs-1 text-success"></i>
-            </div>
-            <div class="design-overlay">
-              <h3>Print Design</h3>
-              <p>Business cards, flyers, brochures, and marketing materials</p>
-              <div class="design-tools">
-                <span class="tool-tag">InDesign</span>
-                <span class="tool-tag">Photoshop</span>
-              </div>
-            </div>
-          </div>
-
-          <div class="design-card" data-category="logos">
-            <div class="design-image">
-              <i class="bi bi-award fs-1 text-danger"></i>
-            </div>
-            <div class="design-overlay">
-              <h3>Award Graphics</h3>
-              <p>Certificates, badges, and recognition graphics for achievements</p>
-              <div class="design-tools">
-                <span class="tool-tag">Illustrator</span>
-                <span class="tool-tag">Canva Pro</span>
-              </div>
-            </div>
-          </div>
-
-          <div class="design-card" data-category="branding">
-            <div class="design-image">
-              <i class="bi bi-images fs-1 text-purple"></i>
-            </div>
-            <div class="design-overlay">
-              <h3>Social Media Graphics</h3>
-              <p>Eye-catching posts, stories, and promotional graphics for social platforms</p>
-              <div class="design-tools">
-                <span class="tool-tag">Photoshop</span>
-                <span class="tool-tag">Canva Pro</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="design-services">
-        <h3>Design Services I Offer</h3>
-        <div class="services-list">
-          <div class="service-item">
-            <i class="bi bi-check-circle text-success"></i>
-            <span>Logo Design & Brand Identity</span>
-          </div>
-          <div class="service-item">
-            <i class="bi bi-check-circle text-success"></i>
-            <span>Web & Mobile UI/UX Design</span>
-          </div>
-          <div class="service-item">
-            <i class="bi bi-check-circle text-success"></i>
-            <span>Print Design & Marketing Materials</span>
-          </div>
-          <div class="service-item">
-            <i class="bi bi-check-circle text-success"></i>
-            <span>Social Media Graphics & Content</span>
-          </div>
-          <div class="service-item">
-            <i class="bi bi-check-circle text-success"></i>
-            <span>Packaging & Product Design</span>
-          </div>
-          <div class="service-item">
-            <i class="bi bi-check-circle text-success"></i>
-            <span>Illustration & Icon Design</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section id="projects" class="projects">
-    <div class="container">
-      <h2 class="section-title">My Projects</h2>
-      <div class="project-grid">
-        <div class="project-card">
-          <div class="project-image">
-            <i class="bi bi-robot fs-1 text-warning"></i>
-          </div>
-          <h3>Robotic Process Automation</h3>
-          <p>Automated data entry and validation system that streamlines repetitive tasks, reducing manual errors by 90% and increasing productivity.</p>
-          <div class="tech-stack">
-            <span class="tech-tag">Python</span>
-            <span class="tech-tag">Selenium</span>
-            <span class="tech-tag">Pandas</span>
-          </div>
-          <div class="project-links">
-            <a href="https://github.com/Makgale26" target="_blank" class="project-link">
-              <i class="bi bi-github"></i> Code
-            </a>
-            <a href="#" class="project-link">
-              <i class="bi bi-eye"></i> Demo
-            </a>
-          </div>
-        </div>
-        <div class="project-card">
-          <div class="project-image">
-            <i class="bi bi-cloud fs-1 text-primary"></i>
-          </div>
-          <h3>API .NET Framework</h3>
-          <p>RESTful API built with .NET Framework, integrated with Azure SQL Database for secure data management and real-time operations.</p>
-          <div class="tech-stack">
-            <span class="tech-tag">C#</span>
-            <span class="tech-tag">.NET</span>
-            <span class="tech-tag">Azure</span>
-            <span class="tech-tag">SQL</span>
-          </div>
-          <div class="project-links">
-            <a href="https://github.com/Makgale26" target="_blank" class="project-link">
-              <i class="bi bi-github"></i> Code
-            </a>
-            <a href="#" class="project-link">
-              <i class="bi bi-eye"></i> Demo
-            </a>
-          </div>
-        </div>
-        <div class="project-card">
-          <div class="project-image">
-            <i class="bi bi-globe fs-1 text-success"></i>
-          </div>
-          <h3>Personal Portfolio</h3>
-          <p>Responsive portfolio website showcasing my skills and projects, built with modern HTML5, CSS3, and JavaScript.</p>
-          <div class="tech-stack">
-            <span class="tech-tag">HTML5</span>
-            <span class="tech-tag">CSS3</span>
-            <span class="tech-tag">JavaScript</span>
-            <span class="tech-tag">Bootstrap</span>
-          </div>
-          <div class="project-links">
-            <a href="https://github.com/Makgale26" target="_blank" class="project-link">
-              <i class="bi bi-github"></i> Code
-            </a>
-            <a href="#" class="project-link">
-              <i class="bi bi-eye"></i> Live
-            </a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section id="Tech" class="Tech">
-    <div class="container">
-      <h2 class="section-title">Tech I'm Familiar With</h2>
-      <div class="Tech-grid">
-        <div class="Tech-card">
-          <i class="bi bi-code-square fs-1 text-danger"></i>
-          <h3>HTML5</h3>
-        </div>
-        <div class="Tech-card">
-          <i class="bi bi-palette fs-1 text-primary"></i>
-          <h3>CSS3</h3>
-        </div>
-        <div class="Tech-card">
-          <i class="bi bi-braces fs-1 text-warning"></i>
-          <h3>JavaScript</h3>
-        </div>
-        <div class="Tech-card">
-          <i class="bi bi-code fs-1 text-success"></i>
-          <h3>Python</h3>
-        </div>
-        <div class="Tech-card">
-          <i class="bi bi-windows fs-1 text-primary"></i>
-          <h3>C# / .NET</h3>
-        </div>
-        <div class="Tech-card">
-          <i class="bi bi-lightning-charge fs-1 text-info"></i>
-          <h3>Power Apps</h3>
-        </div>
-        <div class="Tech-card">
-          <i class="bi bi-arrow-repeat fs-1 text-secondary"></i>
-          <h3>Power Automate</h3>
-        </div>
-        <div class="Tech-card">
-          <i class="bi bi-cpu fs-1 text-muted"></i>
-          <h3>C/C++</h3>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="contributions-section">
-    <div class="container">
-      <h2 class="section-title">GitHub Contributions</h2>
-      <p class="section-subtitle">My commits over the years</p>
-
-      <div class="gallery">
-        <!-- Live Contribution Graph -->
-        <div class="card">
-          <img src="https://github-readme-activity-graph.vercel.app/graph?username=Makgale26&bg_color=0f0f0f&color=00ffcc&line=00ffcc&point=ffffff&hide_border=true"
-               alt="GitHub Contribution Calendar"
-               style="height: 180px; width: 100%; object-fit: cover;">
-          <div class="card-content">
-            <h3>Live Heatmap</h3>
-            <p>Updated daily from GitHub</p>
-          </div>
-        </div>
-
-        <!-- Dynamic Stats -->
-        <div class="card">
-          <img src="https://github-readme-stats.vercel.app/api?username=Makgale26&show_icons=true&theme=dark&hide_border=false"
-               alt="GitHub Stats"
-               style="height: 180px; width: 100%; object-fit: fill;">
-          <div class="card-content">
-            <h3>Stats</h3>
-            <p>Repos, Commits, PRs</p>
-          </div>
-        </div>
-
-        <!-- Top Languages -->
-        <div class="card">
-          <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=Makgale26&layout=compact&theme=dark&hide_border=false"
-               alt="Top Programming Languages"
-               style="width: 100%; max-width: 400px; height: auto; object-fit: contain;">
-          <div class="card-content">
-            <h3>Top Languages</h3>
-            <p>Used in my projects</p>
-          </div>
-        </div>
-
-        <!-- 2024 Commits (Static) -->
-        <div class="card">
-          <img src="asset/first.PNG" alt="2024 Contributions">
-          <div class="card-content">
-            <h3>2024</h3>
-            <p>Commits: 108</p>
-          </div>
-        </div>
-
-  </section>
-<!--Contact section -->
-  <section id="contact" class="contact">
-    <div class="container">
-      <h2 class="section-title">Contact Me</h2>
-      <p class="contact-subtitle">Let's discuss your next project or potential collaboration</p>
-      <form id="contact-form">
-        <div class="form-group">
-          <input type="text" id="name" name="name" placeholder="Your Name" required />
-          <span class="error-message" id="name-error"></span>
-        </div>
-        <div class="form-group">
-          <input type="email" id="email" name="email" placeholder="Your Email" required />
-          <span class="error-message" id="email-error"></span>
-        </div>
-        <div class="form-group">
-          <textarea id="message" name="message" placeholder="Your Message" rows="5" required></textarea>
-          <span class="error-message" id="message-error"></span>
-        </div>
-        <button type="submit" class="btn" id="submit-btn">
-          <i class="bi bi-send"></i> Send Message
-        </button>
-      </form>
-      <div class="contact-info">
-        <div class="contact-item">
-          <i class="bi bi-envelope"></i>
-          <span>kutullomakgale@gmail.com</span>
-        </div>
-        <div class="contact-item">
-          <i class="bi bi-geo-alt"></i>
-          <span>Available for remote work</span>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <footer class="text-center mt-4">
-    <p>
-      <a href="mailto:kutullomakgale@gmail.com" class="me-3 text-danger" aria-label="Email">
-        <i class="bi bi-envelope fs-3"></i>
-      </a>
-      <a href="https://www.linkedin.com/in/kutullo-radingwana-4825b7319/" target="_blank" rel="noopener noreferrer" class="me-3 text-info" aria-label="LinkedIn">
-        <i class="bi bi-linkedin fs-3 text-primary"></i>
-      </a>
-      <a href="https://github.com/Makgale26" target="_blank" rel="noopener noreferrer" class="text-secondary" aria-label="GitHub">
-        <i class="bi bi-github fs-3"></i>
-      </a>
-      <a href="https://wa.me/27783466280" target="_blank" rel="noopener noreferrer" class="text-success" aria-label="WhatsApp">
-        <i class="bi bi-whatsapp fs-3"></i>
-      </a>
-      <a href="https://www.facebook.com/Kutullo_M_Radingwana" target="_blank" rel="noopener noreferrer" class="text-primary" aria-label="Facebook">
-        <i class="bi bi-facebook fs-3"></i>
-      </a>
-    </p>
-    <p>© 2025 Makgale. All rights reserved.</p>
-  </footer>
-
-  <!-- Your JS -->
-  <script src="script.js"></script>
-</body>
-</html>
+// Start typing animation
+document.addEventListener('DOMContentLoaded', () => {
+  type();
+});
