@@ -105,3 +105,77 @@ document.querySelector('.nav-toggle').addEventListener('click', () => {
 document.addEventListener('DOMContentLoaded', () => {
   type();
 });
+
+// === EmailJS Contact Form Handling (Vite + .env) ===
+document.getElementById('contact-form')?.addEventListener('submit', function (e) {
+  e.preventDefault();
+
+  const btn = document.getElementById('submit-btn');
+  const originalBtnHTML = btn.innerHTML;
+  btn.disabled = true;
+  btn.innerHTML = '<i class="bi bi-hourglass-split"></i> Sending...';
+
+  const name = document.getElementById('name').value.trim();
+  const email = document.getElementById('email').value.trim();
+  const message = document.getElementById('message').value.trim();
+
+  // Reset errors
+  document.getElementById('name-error').textContent = '';
+  document.getElementById('email-error').textContent = '';
+  document.getElementById('message-error').textContent = '';
+
+  let hasError = false;
+
+  if (!name) {
+    document.getElementById('name-error').textContent = 'Name is required.';
+    hasError = true;
+  }
+
+  if (!email) {
+    document.getElementById('email-error').textContent = 'Email is required.';
+    hasError = true;
+  } else if (!/^\S+@\S+\.\S+$/.test(email)) {
+    document.getElementById('email-error').textContent = 'Please enter a valid email.';
+    hasError = true;
+  }
+
+  if (!message) {
+    document.getElementById('message-error').textContent = 'Message is required.';
+    hasError = true;
+  }
+
+  if (hasError) {
+    btn.disabled = false;
+    btn.innerHTML = originalBtnHTML;
+    return;
+  }
+
+  const serviceID = import.meta.env.VITE_EMAILJS_SERVICE_ID;
+  const templateID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
+  const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
+
+  // Send email
+  emailjs.send(
+    serviceID,
+    templateID,
+    {
+      from_name: name,
+      from_email: email,
+      message: message,
+      reply_to: email,
+    },
+    publicKey
+  )
+  .then(() => {
+    alert('✅ Thank you, ' + name + '! Your message has been sent successfully.');
+    document.getElementById('contact-form').reset();
+  })
+  .catch((error) => {
+    console.error('📧 EmailJS Error:', error);
+    alert('❌ Something went wrong. Please try again or contact me directly at kutullomakgale@gmail.com');
+  })
+  .finally(() => {
+    btn.disabled = false;
+    btn.innerHTML = originalBtnHTML;
+  });
+});
